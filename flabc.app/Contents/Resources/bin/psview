@@ -1,0 +1,12 @@
+#!/bin/sh
+
+PS2PDF=ps2pdf
+EXT="`echo \"$1\c\" | tail -c 4`"
+if [ "$EXT" = ".eps" ]
+then
+	PS2PDF=epstopdf
+fi
+tmppdf="/tmp/psview.pdf"
+
+$PS2PDF -sPAPERSIZE=a4 "$1" "$tmppdf"
+open "$tmppdf"

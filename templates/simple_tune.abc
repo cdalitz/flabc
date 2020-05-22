@@ -1,0 +1,12 @@
+%!abctab2ps -notab
+%
+X:1
+%
+%%scale 0.85
+%
+T:title
+C:author
+L:1/4
+M:C
+K:C
+%

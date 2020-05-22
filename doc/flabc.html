@@ -1,0 +1,216 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <title>Flabc Documentation</title>
+</head>
+<body>
+
+<h1>
+Flabc - Installation, Configuration and Usage</h1>
+
+<hr>
+<h2>
+Contents</h2>
+
+<dl>
+<dt><a href="#Installation">1 Installation</a>
+<dd><a href="#Q1.1">MacOS X</a>
+<dd><a href="#Q1.2">Windows</a>
+<dd><a href="#Q1.3">Linux</a>
+<dd><a href="#Q1.4">Compiling from Source</a>
+
+<dt><a href="#Usage">2 Usage</a>
+<dd><a href="#Q2.1">Opening Files and Typing abc</a>
+<dd><a href="#Q2.2">File Encoding</a>
+<dd><a href="#Q2.3">Previewing and Listening to abc Files</a>
+<dd><a href="#Q2.4">Setting Format Options and Midi Instruments</a>
+<dd><a href="#Q2.5">Keyboard Shortcuts</a>
+
+<dt><a href="#Config">3 Configuration</a>
+<dd><a href="#Q3.1">Where the Configuration is stored</a>
+<dd><a href="#Q3.2">Look and Feel</a>
+<dd><a href="#Q3.3">External Helper Programs</a>
+<dd><a href="#Q3.4">Using abcm2ps instead of abctab2ps</a>
+<dd><a href="#Q3.5">Printing from gv on MacOS X</a>
+
+<dt><a href="#Bugs">4 Known Bugs and Limitations</a>
+<dd><a href="#Q4.1">All Platforms</a>
+<dd><a href="#Q4.2">MacOS X</a>
+<dd><a href="#Q4.3">Windows</a>
+<dd><a href="#Q4.4">Linux</a>
+</dl>
+
+<hr>
+<!--------------------------------------------------------------------->
+
+<h2>
+<a NAME="Installation"></a>1 Installation</h2>
+
+<h4>
+<a NAME="Q1.1"></a>MacOS X</h4>
+For MacOS X flabc is distributed as an application bundle. To install it simply unpack it by double clicking on the zip archive and move it in some application directory (e.g. <i>/Applications</i> or <i>$HOME/Applications</i>). Then you can open files by dropping them on the application bundle or from the command line with <i>open -a flabc ...</i>.
+<p>
+If you want to associate the file extension <i>abc</i> with flabc, do so from the context information menu of an abc file.
+<p>
+The application bundle includes a copy of <i>abctab2ps</i> and <i>abc2midi</i> so that you do not need to install these programs separately. For viewing the postscript output form abctab2ps however, you will need a postscript viewer and set it in the postscript configuration (menu "Options/System Environment", <a href="#Q3.2">see below</a>).
+<p>
+The default configuration works out of the box with <i>ghostscript</i> from <a href="https://brew.sh/">Homebrew</a>. To install <i>ghostscript</i>, do the following:
+<ol>
+<li>install <a href="https://brew.sh/">Homebrew</a>
+<li>open Terminal.app and enter the command <tt>brew install ghostscript</tt>
+</ol>
+
+<h4>
+<a NAME="Q1.2"></a>Windows</h4>
+For Windows flabc is distributed as an installer built with <a href="http://www.jrsoftware.org/isinfo.php">Inno Setup</a>. Running the installer will install flabc and associate it with the <i>abc</i> file extension. Thus you can open abc files in flabc simply by double clicking on them in the Explorer.
+<p>
+The program includes a copy of <i>abctab2ps</i> and <i>abc2midi</i> so that you do not need to install these programs separately. For viewing the postscript output form abctab2ps however, you will need a postscript viewer that is associated with the <i>ps</i> file extension, e.g. <i>gsview32</i>. Note that you must install <i>two</i> packages: <i>ghostscript</i> and <i>ghostview</i> from <a href="http://www.cs.wisc.edu/~ghost/gsview/">http://www.cs.wisc.edu/~ghost/gsview/</a>.
+
+<h4>
+<a NAME="Q1.3"></a>Linux</h4>
+For Linux flabc is distributed as a RPM or DEB file which does not include <i>abctab2ps</i> or <i>abc2midi</i> so that you need to install them separately.
+<p>
+Due to the lack of universal file type associations on Linux (like the HKEY_CLASSES_ROOT registry branch on Windows or the LaunchServices database on MacOS X) you will need to explicitly set your postscript viewer, midi player and web browser under "Options/System Environment", <a href="#Q3.2">see below</a>.
+
+<h4>
+<a NAME="Q1.4"></a>Compiling from Source</h4>
+In order to compile flabc from the sources, you need an ANSI C++ compiler with STL support. Moreover you need at least FLTK 1.3.x from <a href="http://www.fltk.org">www.fltk.org</a>. For MacOS X you should use the svn version of FLTK because in FLTK 1.3.3 interaction with the clipboard 
+(copy & paste) leads to crashes on MacOS X.
+
+<p>
+The provided Makefile assumes that you are using some version of the GNU C compiler <i>gcc</i>.
+<p>
+To install flabc from the source code package, do the following:
+<ul>
+<li>unpack the TGZ-archive eg. with <i>tar xzf</i>
+<li>change to the subdirectory <i>src</i>
+<li>to compile the source code, type <i>make</i> on Linux, <i>make osxapp</i> on MacOS X or <i>make winapp</i> on Windows
+<li>to install flabc into <i>/usr/local</i> type <i>make install</i> as root on Linux
+</ul>
+The source package does not include <i>abctab2ps</i> or <i>abc2midi</i> which you will need to install separately.
+
+<hr>
+<!--------------------------------------------------------------------->
+
+<h2>
+<a NAME="Usage"></a>2 Usage</h2>
+
+<h4>
+<a NAME="Q2.1"></a>Opening Files and Typing abc</h4>
+On Linux you can open an abc file with <i>flabc file.abc</i>. For Windows or MacOS X see the platform specific installation instructions.
+<p>
+Flabc is not a graphical note drawing editor. You will need to type the music as ASCII text in the abc file format. A detailed description of this file format can be found under "Help/Abctab2ps User's Guide".
+
+<h4>
+<a NAME="Q2.2"></a>File Encoding</h4>
+Whilst <i>abctab2ps</i> requires the abc file to be in latin1 encoding, <i>abcm2ps</i> (at least since 2014) requires it to be in utf8 encoding. flabc solves this problem as follows:
+<ul>
+  <li>If the first line starts with <tt>%!abcm2ps</tt>, the file is stored in utf encoding.</li>
+  <li>If the default program is set to <i>abcm2ps</i> in "Options/Behaviour", the file is stored in utf8 encoding, unless the first line starts with <tt>%!abctab2ps</tt>.</li>
+  <li>In all other cases, the file is stored in latin1 encoding.</li>
+</ul>
+
+<h4>
+<a NAME="Q2.3"></a>Previewing and Listening to abc Files</h4>
+You can preview your music or listen to it with the respective menu items in the "Abc" submenu. If any of these does not work, there is most likely a problem in your <a href="#Q3.2">configuration</a> of external helper programs or you do not have installed a postscript viewer like <i>ghostview</i>.
+<p>
+When <i>abctab2ps</i> or <i>abc2midi</i> report an error while processing your abc code, a box with the error messages will appear. With the button "Goto next error" you can directly jump to the offending abc code in flabc.
+
+<h4>
+<a NAME="Q2.4"></a>Setting Format Options and Midi Instruments</h4>
+As it is hard to remember all format options, flabc offers a convenient way for browsing options and setting them. Choose the menu "Abc/List Format Parameters", click on the desired options and press the button "Copy to Clipboard". Then you can paste (e.g. with Ctrl/Apple-V) the options into the editor.
+<p>
+The same works for selecting Midi instruments for abc2midi. If your file contains more than one voice, make sure that you set the instrument for all voices.
+
+<h4>
+<a NAME="Q2.5"></a>Keyboard Shortcuts</h4>
+Flabc supports the usual CUA shortcuts, i.e. Ctrl/Apple-C for copy, Ctrl/Apple-X for cut, Ctrl/Apple-V for paste and Ctrl/Apple-Z for undo. Moreover you can access the main menu with <i>Alt</i> (Linux, Windows) or <i>Ctrl + Alt</i> (MacOS X) and the underlined letter.
+<p>
+This means that the resulting keyboard shortcut for e.g. "Abc/Preview Tune" is Alt-A-T on Linux and Windows and Ctrl-Alt-A-T on MacOS X. Moreover most popup windows can be closed with Esc.
+
+<hr>
+<!--------------------------------------------------------------------->
+
+<h2>
+<a NAME="Config"></a>3 Configuration</h2>
+
+<h4>
+<a NAME="Q3.1"></a>Where the Configuration is Stored</h4>
+To store the configuration you must select the menu item "Options/Save Options". The configuration is stored in files under a directory that will be reported during saving (the actual location depends on the operating system and the user account). If you need to get rid of your configuration you can remove this directory.
+
+<h4>
+<a NAME="Q3.2"></a>Look and Feel</h4>
+Colors and fonts of the editor can be customized via "Options/Look and Feel". For changing a color, do a single click on the color box; this will popup a color chooser. Moreover you can make the abc markup signs '^' and '~' no dead key characters on MacOS X.
+<p>
+You need to press the "Apply" button for making your settings visible in the current session. In order to make your current settings permanent, select the menu item "Options/Save Options".
+
+<h4>
+<a NAME="Q3.3"></a>External Helper Programs</h4>
+For a number of operations (e.g. previewing an abc file) flabc relies on external programs which must be properly configured in order to be callable. As the MacOS X and Windows distribution come bundled with abctab2ps and abc2midi there is less to configure than on Linux, but some configuration may still be necessary, depending on your system environment.
+<p>
+The external helper applications can be configured via "Options/System Environment", where all options are documented in detail. You must press the "Apply" button to apply your changes for the current session. In order to make your current settings permanent, select the menu item "Options/Save Options". If you have totally messed up your configuration press the "Reset" button which will restore all default options.
+<p>
+Here are some hints for typical configuration problems:
+<ul>
+<li>On MacOS X the only option that needs to be configured is the postscript viewer. If your postscript viewer is an X11 application (as for instance gv or ghostview), call it with <i>open-xapp</i>, e.g. "open-xapp gv". <i>open-xapp</i> is a script bundled with flabc that automatically launches X11 if it is not yet running and assigns the correct DISPLAY to the called X11 application.
+<li>You can check whether abctab2ps and abc2midi are found with "Help/About flabc".
+<li>On Linux you will also need to set your web browser for viewing the documentation. This can be tricky if your browser supports session management only via arcane command line options. If you are using KDE, <i>konqueror</i> is a good choice. <i>mozilla</i> or <i>firefox</i> should also work.
+<li>When you are using Media Player on Windows as your default application for opening Midi files, you must additionally enable the Midi format in the settings of Media Player (this seems to be disabled by default).
+</ul>
+
+<h4>
+<a NAME="Q3.4"></a>Using abcm2ps instead of abctab2ps</h4>
+It is possible to use <i>abcm2ps</i> for postscript conversion instead of <i>abctab2ps</i>, provided abcm2ps is installed on your system. On Windows it is recommended to copy the abcm2ps executable into the <i>bin</i> subdirectory of your flabc installation; then it is guaranteed that flabc will find abcm2ps. The "Help/About flabc" dialog will show whether abcm2ps is found.
+<p>
+To use abcm2ps instead of abctab2ps simply check this option under "Options/Behaviour". Independant of the chosen default program you can set the conversion program for individual files by starting them with the magic characters <tt>%!abctab2ps</tt> or <tt>%!abcm2ps</tt>. If you do not want this, there is even an option to suppress the recognition of the <tt>%!</tt> magic; when unchecked, the default program is <i>always</i> used, regardless of the <tt>%!</tt> directive.
+
+<h4>
+<a NAME="Q3.5"></a>Printing from gv on MacOS X</h4>
+If you are using <i>gv</i> (eg. from Fink) as postscript viewer on OSX and cannot print from it, set the printer command under "State/Setup Options" to the following command:
+<p>
+<tt>&nbsp;&nbsp;ps2pdf '%s' - | lpr -o media=A4</tt>
+<p>
+
+<hr>
+<!--------------------------------------------------------------------->
+
+<h2>
+<a NAME="Bugs"></a>4 Bugs</h2>
+
+<h4>
+<a NAME="Q4.1"></a>All Platforms</h4>
+<ul>
+<li>Inactive menu items are not yet implemented
+<li>Midi conversion ("Abc/Listen Tune") only works with music but not tablature
+<li>As Midi and Postscript conversions are done with different programs, some abc dialect incompatibilities can occur
+<li>abc2midi does not report the column of an error
+</ul>
+
+<h4>
+<a NAME="Q4.2"></a>MacOS X</h4>
+<ul>
+<li>When windows are closed their memory is not freed before the last window or the entire application is closed
+<li>When several windows are open a change in the configuration settings only applies to the current window
+<li>If you compile flabc from the sources with FLTK 1.3.3, there will be crashes when copying to or pasting from the clipboard. To fix this use the SVN version of FLTK.
+</ul>
+
+<h4>
+<a NAME="Q4.3"></a>Windows</h4>
+<ul>
+<li>flabc has only been tested on Windows 7.</li>
+<li>regular expression search is not supported on Windows</li>
+</ul>
+
+<h4>
+<a NAME="Q4.4"></a>Linux</h4>
+<ul>
+<li>when there is an error invocating the web browser, postscript viewer or midi player, no error is reported</li>
+</ul>
+
+<!--------------------------------------------------------------------->
+
+<p>
+<hr><i>Last changed 2019-12-27</i>
+</body>
+</html>

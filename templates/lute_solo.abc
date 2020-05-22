@@ -1,0 +1,20 @@
+%!abctab2ps
+%
+%%topmargin      2.20cm
+%%topspace       -0.40cm
+%
+X:1
+%
+%%titleleft      true
+%%tabfontsize    11
+%%tabfontscale   1.2
+%%tabflagspace   3pt
+%%tabaddflags    0
+%%tabrhstyle     modern
+%
+T:title
+C:composer
+L:1/4
+M:none
+K:frenchtab
+%

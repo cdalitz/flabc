@@ -1,0 +1,102 @@
+#!/bin/sh
+
+#
+# makesrcdist - makes current flabc source distribution
+#
+
+# abcedit version
+VERSION=""
+
+# file with list of files to include (is generated)
+LF=Include
+
+# command line arguments
+#------------------------
+
+USAGEMSG="USAGE: `basename $0` -v version"
+
+while [ $# -gt 0 ]
+do
+    case "$1" in
+      -v) VERSION="$2"; shift;;
+      *)  echo "$USAGEMSG" 1>&2; exit 1;;
+    esac
+    shift
+done
+
+if [ -z "$VERSION" ]
+then
+    echo "$USAGEMSG" 1>&2
+    exit 1
+fi
+
+# plausi checks
+_srcversion="`grep '^#define.*VERSION ' src/flabc.h | cut -f 2 -d '"'`"
+if [ "$_srcversion" = "$VERSION" ]
+then
+    :
+else
+    echo "Version in source code ($_srcversion) different from $VERSION"
+    echo -n "Continue? (y/n) [n] "; read ok
+    test "$ok" = "y" -o "$ok" = "Y" || exit
+fi
+if grep -q "^%version $VERSION" src/flabc.list
+then
+    :
+else
+    echo "Version in EPM list different from $VERSION" 1>&2
+    exit 1
+fi
+if grep -q "^AppVerName=.* version $VERSION" winapp/setup.iss
+then
+    :
+else
+    echo "Version in winapp/setup.iss different from $VERSION" 1>&2
+    exit 1
+fi
+
+# create list of files to archive
+#---------------------------------
+
+# temporary directory link
+DIR=flabc-$VERSION
+
+ln -s . $DIR
+
+# Readme, License, History
+echo $DIR/README > $LF
+echo $DIR/CHANGES >> $LF
+echo $DIR/LICENSE >> $LF
+
+# patches to FLTK
+echo $DIR/fltk-patches >> $LF
+
+# source code
+find $DIR/src -name "*.c" -o -name "*.cpp" -o -name "*.h" -o -iname "Makefile*" -o -name "*.fl" -o -name "*.list" -o -iname "Readme*" >> $LF
+
+# logo, doc, templates
+echo $DIR/src/logo >> $LF
+echo $DIR/doc >> $LF
+echo $DIR/templates >> $LF
+echo $DIR/examples >> $LF
+
+# distribution scripts
+ls $DIR/make* >> $LF
+echo $DIR/winapp >> $LF
+echo $DIR/flabc.app >> $LF
+
+
+# write archive
+#-----------------
+
+tar czvf flabc-$VERSION.tar.gz \
+    --exclude '.DS_Store' \
+    --exclude 'flabc.app/Contents/MacOS/flabc' \
+    --exclude 'winapp/bin/flabc.exe' \
+    -T $LF
+
+
+# clean up
+#--------------
+
+rm $LF $DIR

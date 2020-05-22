@@ -16,7 +16,7 @@ Prerequisites:
     with clang on MacOS X, gcc on Linux, and MingW on Windows
   - GNU make
   - FLTK 1.3.3 or later (on OSX: 1.3.4 or later),
-    see https://www.fltk.org/
+    see <https://www.fltk.org/>
 
 To compile *flabc* from the source code package, change to the subdirectory
 *src* and type *make*. To install it on Linux, type ($ is the shell prompt):
@@ -25,7 +25,7 @@ To compile *flabc* from the source code package, change to the subdirectory
 
 If you ever need to uninstall *flabc*, type *sudo make uninstall*.
 Alternatively, you can use the ESP Package Manager *epm* (see
-https://www.msweet.org/epm/), to create a RPM or DEB package and
+<https://www.msweet.org/epm/>), to create a RPM or DEB package and
 install it (replace "platform" with your processor type and "x.y.z"
 with the current version of flabc):
 
@@ -37,17 +37,34 @@ with the current version of flabc):
     $ sudo make deb
 	$ sudo dpkg -i linux-platform/flabc-x.y.z.rpm
 
+Note that flabc is only an editor for abc files. You must additionally
+install software that actually processes abc files like
+
+  - abctab2ps: <http://www.lautengesellschaft.de/cdmm/>
+  - abcm2ps: <https://github.com/leesavide/abcm2ps>
+  - abc2midi: <http://abc.sourceforge.net/abcMIDI/>
+
 To create an OSX application bundle *flabc.app*, you can use the script
-*makeosxapp* in the root directory of this package. To create a Windows
-binary installer with InnoSetup (see https://jrsoftware.org/isinfo.php),
-you can use the script *makewindist*.
+*makeosxapp* in the root directory of this package. Note that you can also
+copy the *abctab2ps*, *abcm2ps*, and *abc2midi* binaries to the subdirectory
+*flabc.app/Contents/Resources/bin* in order to obtain a self-sufficient
+application bundle.
+
+To create a Windows binary installer with InnoSetup
+(see <https://jrsoftware.org/isinfo.php>), you can use the script
+*makewindist*. You should, however, before copy the binaries of
+*abctab2ps*, *abcm2ps*, and *abc2midi* to *winapp/bin* beforehand, because
+on Windows binaries are not installed in standard directories and thus
+cannot automatically be found by *flabc*.
 
 
 Binary packages
 ---------------
 
 File releases and precompiled binary installers for different platforms are
-available from http://www.lautengesellschaft.de/cdmm/.
+available from http://www.lautengesellschaft.de/cdmm/. These packages
+typically also include the helper programs *abctab2ps*, *abcm2ps*, and
+*abc2midi*.
 
 
 Usage and configuration hints
@@ -61,7 +78,7 @@ listening to a tune is "Ctrl + Alt + A, L" on OSX and
 On OSX you can drag & drop files on flabc. Alternatively you 
 can open an abc file 'bla.abc' from the command line with 
 "open -a flabc 'bla.abc'" when you have moced the application
-bundle to some standard application directory (eg. $HOME/Applications).
+bundle to some standard application directory (eg. */Applications*).
 
 When previewing or listening does not work check whether something
 is wrong with the settings under "Options/System Environment".
@@ -77,6 +94,6 @@ Copyright and author
 Copyright (c) 2006-2020 by Christoph Dalitz
 
 Official home page of flabc and abctab2ps:
-http://www.lautengesellschaft.de/cdmm/
+<http://www.lautengesellschaft.de/cdmm/>
 
 For licensing information, see the file LICENSE for details.

@@ -1,0 +1,1189 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0303 
+header_name {.h} 
+code_name {.cpp}
+decl {\#include <FL/Fl_Color_Chooser.H>} {private local
+} 
+
+class OptionsLook_msk {} {
+  decl {Fl_Font romanfontnum;} {public local
+  }
+  decl {Fl_Font boldfontnum;} {public local
+  }
+  decl {Fl_Font italicfontnum;} {public local
+  }
+  decl {Fl_Font bolditalicfontnum;} {public local
+  }
+  decl {MainWin* mainwin;} {public local
+  }
+  Function {OptionsLook_msk(MainWin* mw)} {open
+  } {
+    Fl_Window window {
+      label {Options Look & Feel} open
+      xywh {149 110 456 546} type Double hide
+      code0 {\#include "mainwin.h"}
+    } {
+      Fl_Spinner fontsize {
+        label {Font Size:}
+        xywh {132 16 40 24}
+      }
+      Fl_Button backgroundcolor {
+        label {Background Color}
+        callback {getbuttoncolor(o);}
+        xywh {65 51 19 20} box BORDER_BOX color 1 align 8
+      }
+      Fl_Button selectioncolor {
+        label {Selection Color}
+        callback {getbuttoncolor(o);}
+        xywh {65 83 19 20} box BORDER_BOX color 1 align 8
+      }
+      Fl_Choice scheme {
+        label {Scheme:} open
+        xywh {275 17 115 25} down_box BORDER_BOX
+      } {}
+      Fl_Check_Button visiblefocus {
+        label {Visible Focus}
+        xywh {224 50 110 25} down_box DOWN_BOX
+      }
+      Fl_Check_Button abcnodeadkeys {
+        label {^ and ~ no dead keys}
+        xywh {224 80 176 25} down_box DOWN_BOX
+      }
+      Fl_Group {} {
+        label Fonts open
+        xywh {15 120 425 150} box EMBOSSED_BOX align 9
+      } {
+        Fl_Output romanfont {
+          label {Roman:}
+          xywh {92 134 240 21}
+        }
+        Fl_Button {} {
+          label Change
+          callback {getfont_cb(romanfont, &romanfontnum);}
+          xywh {345 131 75 25}
+        }
+        Fl_Output boldfont {
+          label {Bold:}
+          xywh {92 168 240 21}
+        }
+        Fl_Button {} {
+          label Change
+          callback {getfont_cb(boldfont, &boldfontnum);}
+          xywh {345 165 75 25}
+        }
+        Fl_Output italicfont {
+          label {Italic:}
+          xywh {92 204 240 21}
+        }
+        Fl_Button {} {
+          label Change
+          callback {getfont_cb(italicfont, &italicfontnum);}
+          xywh {345 201 75 25}
+        }
+        Fl_Output bolditalicfont {
+          label {Bold Italic:}
+          xywh {92 238 240 21}
+        }
+        Fl_Button {} {
+          label Change
+          callback {getfont_cb(bolditalicfont, &bolditalicfontnum);}
+          xywh {345 235 75 25}
+        }
+      }
+      Fl_Group {} {
+        label {Highlight Styles} open
+        xywh {15 293 425 191} box EMBOSSED_BOX align 9
+      } {
+        Fl_Box {} {
+          label Plain
+          xywh {60 318 30 16} align 20
+        }
+        Fl_Button Acolor {
+          label Color
+          callback {getbuttoncolor(o);}
+          xywh {151 317 19 20} box BORDER_BOX color 1 align 8
+        }
+        Fl_Check_Button Abold {
+          label Bold
+          xywh {229 319 64 15} down_box DOWN_BOX
+        }
+        Fl_Check_Button Aitalic {
+          label Italic
+          xywh {306 319 70 15} down_box DOWN_BOX
+        }
+        Fl_Box {} {
+          label Comments
+          xywh {59 346 30 16} align 20
+        }
+        Fl_Button Bcolor {
+          label Color
+          callback {getbuttoncolor(o);}
+          xywh {151 345 19 20} box BORDER_BOX color 1 align 8
+        }
+        Fl_Check_Button Bbold {
+          label Bold
+          xywh {229 347 64 15} down_box DOWN_BOX
+        }
+        Fl_Check_Button Bitalic {
+          label Italic
+          xywh {306 347 70 15} down_box DOWN_BOX
+        }
+        Fl_Box {} {
+          label {Info Fields}
+          xywh {59 376 30 16} align 20
+        }
+        Fl_Button Ccolor {
+          label Color
+          callback {getbuttoncolor(o);}
+          xywh {151 375 19 20} box BORDER_BOX color 1 align 8
+        }
+        Fl_Check_Button Cbold {
+          label Bold
+          xywh {229 377 64 15} down_box DOWN_BOX
+        }
+        Fl_Check_Button Citalic {
+          label Italic
+          xywh {306 377 70 15} down_box DOWN_BOX
+        }
+        Fl_Box {} {
+          label {Voice Fields}
+          xywh {59 406 30 16} align 20
+        }
+        Fl_Button Dcolor {
+          label Color
+          callback {getbuttoncolor(o);}
+          xywh {151 405 19 20} box BORDER_BOX color 1 align 8
+        }
+        Fl_Check_Button Dbold {
+          label Bold
+          xywh {229 407 64 15} down_box DOWN_BOX
+        }
+        Fl_Check_Button Ditalic {
+          label Italic
+          xywh {306 407 70 15} down_box DOWN_BOX
+        }
+        Fl_Box {} {
+          label {Bar Lines}
+          xywh {59 435 30 16} align 20
+        }
+        Fl_Button Ecolor {
+          label Color
+          callback {getbuttoncolor(o);}
+          xywh {151 434 19 20} box BORDER_BOX color 1 align 8
+        }
+        Fl_Check_Button Ebold {
+          label Bold
+          xywh {229 436 64 15} down_box DOWN_BOX
+        }
+        Fl_Check_Button Eitalic {
+          label Italic
+          xywh {306 436 70 15} down_box DOWN_BOX
+        }
+      }
+      Fl_Button {} {
+        label Apply
+        callback {buttonapply_cb();}
+        xywh {73 497 70 35}
+      }
+      Fl_Button {} {
+        label Reset
+        callback {buttonreset_cb();}
+        xywh {182 497 70 35}
+      }
+      Fl_Button {} {
+        label Quit
+        callback {buttonquit_cb();}
+        xywh {288 497 70 35}
+      }
+    }
+    code {mainwin = mw;
+scheme->add("plastic",0,0);
+scheme->add("none",0,0);
+scheme->add("gtk+",0,0);
+scheme->add("gleam",0,0);} {}
+  }
+  Function {~OptionsLook_msk()} {open return_type virtual
+  } {
+    code {delete window;} {}
+  }
+  Function {buttonapply_cb() = 0} {open return_type {virtual void}
+  } {}
+  Function {buttonreset_cb() = 0} {open return_type {virtual void}
+  } {}
+  Function {buttonquit_cb()} {open return_type {virtual void}
+  } {
+    code {window->hide();} {}
+  }
+  Function {getfont_cb(Fl_Output* output, Fl_Font* fontnum) = 0} {open return_type {virtual void}
+  } {}
+  Function {getbuttoncolor(Fl_Button* button)} {open return_type void
+  } {
+    code {uchar r,g,b;
+Fl::get_color(button->color(),r,g,b);
+if (fl_color_chooser("Pick Color", r, g, b)) {
+  button->color(fl_rgb_color(r,g,b));
+  button->selection_color(fl_rgb_color(r,g,b));
+  button->redraw();
+}} {}
+  }
+  Function {show()} {open return_type void
+  } {
+    code {window->show();} {}
+  }
+} 
+
+class OptionsBehaviour_msk {} {
+  decl {MainWin* mainwin;} {public local
+  }
+  Function {OptionsBehaviour_msk(MainWin* mw)} {open
+  } {
+    Fl_Window window {
+      label {Options Behaviour} open
+      xywh {465 102 346 266} type Double hide
+      code0 {\#include "mainwin.h"}
+    } {
+      Fl_Button {} {
+        label Apply
+        callback {buttonapply_cb();}
+        xywh {30 205 70 35}
+      }
+      Fl_Button {} {
+        label Reset
+        callback {buttonreset_cb();}
+        xywh {139 205 70 35}
+      }
+      Fl_Button {} {
+        label Quit
+        callback {buttonquit_cb();}
+        xywh {245 205 70 35}
+      }
+      Fl_Check_Button askonexit {
+        label {Ask on exit when buffer changed}
+        xywh {55 24 245 25} down_box DOWN_BOX
+      }
+      Fl_Check_Button takecareofshebang {
+        label {Take care of %! line}
+        xywh {54 158 241 29} down_box DOWN_BOX
+      }
+      Fl_Group {} {
+        label {default abc2ps program} open
+        xywh {35 78 270 70} box EMBOSSED_BOX align 5
+      } {
+        Fl_Round_Button abctab2ps {
+          label abctab2ps
+          xywh {55 91 106 19} type Radio down_box ROUND_DOWN_BOX
+        }
+        Fl_Round_Button abcm2ps {
+          label abcm2ps
+          xywh {55 116 106 19} type Radio down_box ROUND_DOWN_BOX
+        }
+      }
+    }
+    code {mainwin = mw;} {}
+  }
+  Function {~OptionsBehaviour_msk()} {open return_type virtual
+  } {
+    code {delete window;} {}
+  }
+  Function {buttonapply_cb() = 0} {open return_type {virtual void}
+  } {}
+  Function {buttonreset_cb() = 0} {open return_type {virtual void}
+  } {}
+  Function {buttonquit_cb()} {open return_type {virtual void}
+  } {
+    code {window->hide();} {}
+  }
+  Function {show()} {open return_type void
+  } {
+    code {window->show();} {}
+  }
+} 
+
+class OptionsSystem_msk {} {
+  decl {MainWin* mainwin;} {public local
+  }
+  Function {OptionsSystem_msk(MainWin* mw)} {open
+  } {
+    Fl_Window window {
+      label {Options System Environment} open
+      xywh {348 217 590 440} type Double
+      code0 {\#include "mainwin.h"} visible
+    } {
+      Fl_Button {} {
+        label Apply
+        callback {buttonapply_cb();}
+        xywh {45 385 70 35}
+      }
+      Fl_Button {} {
+        label Reset
+        callback {buttonreset_cb();}
+        xywh {154 385 70 35}
+      }
+      Fl_Button {} {
+        label Quit
+        callback {buttonquit_cb();}
+        xywh {425 385 70 35}
+      }
+      Fl_Tabs {} {open
+        xywh {4 5 581 370}
+      } {
+        Fl_Group {} {
+          label abctab open
+          xywh {4 30 571 337} align 5
+        } {
+          Fl_Input abctab2ps {
+            label {abctab2ps Command:}
+            xywh {29 57 526 24} align 5
+            class noarrow_Fl_Input
+          }
+          Fl_Input abcm2ps {
+            label {abcm2ps Command:}
+            xywh {29 101 526 24} align 5
+            class noarrow_Fl_Input
+          }
+          Fl_Box {} {
+            label {Commands for abc to postscript conversion. When it is installed in your PATH, the basename is sufficient. Otherwise specify the full path; when this path contains spaces, put quotes around the path.}
+            xywh {30 130 530 54} labelfont 2 align 149
+          }
+          Fl_Input abctabfonts {
+            label {Special abctab Font Directories:}
+            xywh {29 207 526 24} align 5
+            class noarrow_Fl_Input
+          }
+          Fl_Box {} {
+            label {Semicolon separated list of directories with additional tablature fonts. By default abctab2ps only looks in /usr/[local/]share/abctab2ps.}
+            xywh {30 236 525 39} labelfont 2 align 149
+          }
+          Fl_Input abctmpfile {
+            label {Temporary abc File:}
+            xywh {29 294 526 24} align 5
+            class noarrow_Fl_Input
+          }
+          Fl_Box {} {
+            label {Filename to which single tunes (eg. for "Abc/Preview Tune") are written. Make sure it is writable (and user specific on a multi user system).}
+            xywh {30 325 525 35} labelfont 2 align 149
+          }
+        }
+        Fl_Group {} {
+          label Postscript
+          xywh {4 30 576 335} align 5 hide
+        } {
+          Fl_Input psviewer {
+            label {PS Viewing Command (Linux and OSX only):}
+            xywh {38 76 507 24} align 5
+            class noarrow_Fl_Input
+          }
+          Fl_Box {} {
+            label {Command for viewing postscript files to which the filename will be appended. When specifying a full path including spaces, put quotes around the path. Note: On Windows this command is ignored and postscript files are opened with the associated postscript viewer (via ShellExecute).}
+            xywh {40 111 505 79} labelfont 2 align 149
+          }
+          Fl_Input pstmpfile {
+            label {Temporary PS Output File:}
+            xywh {38 222 507 24} align 5
+            class noarrow_Fl_Input
+          }
+          Fl_Box {} {
+            label {Filename to which postscript output from abctab2ps is written. Make sure it is writable (and user specific on a multi user system).}
+            xywh {40 259 505 43} labelfont 2 align 149
+          }
+        }
+        Fl_Group {} {
+          label Midi
+          xywh {4 30 571 335} align 5 hide
+        } {
+          Fl_Input abc2midi {
+            label {abc2midi Command:}
+            xywh {32 61 518 24} align 5
+            class noarrow_Fl_Input
+          }
+          Fl_Box {} {
+            label {Command for abc to midi conversion. When it is installed in your PATH, the basename is sufficient. Otherwise specify the full path; when this path contains spaces, put quotes around the path.}
+            xywh {33 91 517 54} labelfont 2 align 149
+          }
+          Fl_Input midiplayer {
+            label {MidiPlayer Command (Linux only):}
+            xywh {31 171 519 24} align 5
+            class noarrow_Fl_Input
+          }
+          Fl_Box {} {
+            label {On Windows or OSX midi files are opened with the associated application (via ShellExecute or open). On Linux you must specify the command for opening midi files; the midi filename will be appended to the end.}
+            xywh {30 201 525 57} labelfont 2 align 149
+          }
+          Fl_Input miditmpfile {
+            label {Temporary Midi File:}
+            xywh {30 281 520 24} align 5
+            class noarrow_Fl_Input
+          }
+          Fl_Box {} {
+            label {Filename to which midi output from abc2midi is written. Make sure it is writable (and user specific on a multi user system).}
+            xywh {30 311 520 43} labelfont 2 align 149
+          }
+        }
+        Fl_Group {} {
+          label Documentation
+          xywh {4 30 576 335} align 5 hide
+        } {
+          Fl_Input docdirs {
+            label {Documentation Directories:}
+            xywh {35 80 500 24} align 5
+            class noarrow_Fl_Input
+          }
+          Fl_Box {} {
+            label {Semicolon separated list of directories that are searched for documentaton eg. when the menu "Help/Abctab2ps User's Guide" is invoked. The user's guide is search in the subdirectory doc/userguide.}
+            xywh {35 115 505 63} labelfont 2 align 149
+          }
+          Fl_Input webbrowser {
+            label {Webbrowsers (Linux only):}
+            xywh {35 216 505 24} align 5
+            class noarrow_Fl_Input
+          }
+          Fl_Box {} {
+            label {On Windows or OSX html files are opened with the associated application (via ShellExecute or open). On Linux you must specify a semicolon separated list of webbrowsers. flabc will pick the first from the list that is installed on your system.}
+            xywh {34 252 511 76} labelfont 2 align 149
+          }
+        }
+        Fl_Group {} {
+          label Templates open
+          xywh {14 40 571 335} align 5 hide
+        } {
+          Fl_Input templatedirs {
+            label {Template Directories:}
+            xywh {35 77 505 24} align 5
+            class noarrow_Fl_Input
+          }
+          Fl_Box {} {
+            label {Semicolon separated list of directories that are searched for template files for the menu item "File/New from Template". Files will be listed in the order of the template directories.}
+            xywh {35 112 510 63} labelfont 2 align 149
+          }
+          Fl_Input exampledirs {
+            label {Example Directories:}
+            xywh {35 207 505 24} align 5
+            class noarrow_Fl_Input
+          }
+          Fl_Box {} {
+            label {Semicolon separated list of directories that are searched for example files for the menu item "File/Open Example". Files will be listed in the order of the example directories.}
+            xywh {35 242 510 63} labelfont 2 align 149
+          }
+        }
+      }
+    }
+    code {mainwin = mw;} {}
+  }
+  Function {~OptionsSystem_msk()} {open return_type virtual
+  } {
+    code {delete window;} {}
+  }
+  Function {buttonapply_cb() = 0} {open return_type {virtual void}
+  } {}
+  Function {buttonreset_cb() = 0} {open return_type {virtual void}
+  } {}
+  Function {buttonquit_cb()} {open return_type {virtual void}
+  } {
+    code {window->hide();} {}
+  }
+  Function {show()} {open return_type void
+  } {
+    code {window->show();} {}
+  }
+} 
+
+class AbcFormatList_msk {} {
+  decl {MainWin* mainwin;} {public local
+  }
+  Function {AbcFormatList_msk(MainWin* mw)} {open
+  } {
+    Fl_Window window {
+      label {Abc Format Parameters} open
+      xywh {374 135 458 421} type Double hide resizable
+      code0 {\#include "mainwin.h"}
+    } {
+      Fl_Browser browser {
+        xywh {25 20 410 320} textfont 4 resizable
+        code0 {\#include <FL/Fl_Multi_Browser.H>}
+        class Fl_Multi_Browser
+      }
+      Fl_Group {} {open
+        xywh {0 353 455 68}
+      } {
+        Fl_Button {} {
+          label {Copy to Clipboard}
+          callback {buttoncopy_cb();}
+          xywh {55 361 145 39} shortcut 0x40063
+        }
+        Fl_Button {} {
+          label Close
+          callback {buttonclose_cb();}
+          xywh {310 363 90 37}
+        }
+      }
+    }
+    code {mainwin = mw;} {}
+  }
+  Function {~AbcFormatList_msk()} {open return_type virtual
+  } {
+    code {delete window;} {}
+  }
+  Function {buttoncopy_cb() = 0} {open return_type {virtual void}
+  } {}
+  Function {buttonclose_cb()} {open return_type {virtual void}
+  } {
+    code {window->hide();} {}
+  }
+  Function {show()} {open return_type void
+  } {
+    code {window->show();} {}
+  }
+} 
+
+class MidiList_msk {} {
+  decl {MainWin* mainwin;} {public local
+  }
+  Function {MidiList_msk(MainWin* mw)} {open
+  } {
+    Fl_Window window {
+      label {Midi Instruments} open
+      xywh {384 145 460 448} type Double hide resizable
+      code0 {\#include "mainwin.h"}
+    } {
+      Fl_Browser browser {
+        xywh {25 20 410 320} textfont 4 resizable
+        code0 {\#include <FL/Fl_Multi_Browser.H>}
+        class Fl_Multi_Browser
+      }
+      Fl_Group {} {open
+        xywh {0 352 460 96}
+      } {
+        Fl_Box {} {
+          label {Show Instruments:}
+          xywh {88 356 140 18} align 20
+        }
+        Fl_Round_Button commoninstruments {
+          label common
+          callback {buttoncommoninstruments_cb();}
+          xywh {224 355 79 20} type Radio down_box ROUND_DOWN_BOX
+        }
+        Fl_Round_Button allinstruments {
+          label all
+          callback {buttonallinstruments_cb();}
+          xywh {314 355 69 20} type Radio down_box ROUND_DOWN_BOX
+        }
+        Fl_Button {} {
+          label {Copy to Clipboard}
+          callback {buttoncopy_cb();}
+          xywh {55 391 145 35} shortcut 0x40063
+        }
+        Fl_Button {} {
+          label Close
+          callback {buttonclose_cb();}
+          xywh {310 391 90 35}
+        }
+      }
+    }
+    code {mainwin = mw;} {}
+  }
+  Function {~MidiList_msk()} {open return_type virtual
+  } {
+    code {delete window;} {}
+  }
+  Function {buttoncommoninstruments_cb() = 0} {open return_type {virtual void}
+  } {}
+  Function {buttonallinstruments_cb() = 0} {open return_type {virtual void}
+  } {}
+  Function {buttoncopy_cb() = 0} {open return_type {virtual void}
+  } {}
+  Function {buttonclose_cb()} {open return_type {virtual void}
+  } {
+    code {window->hide();} {}
+  }
+  Function {show()} {open return_type void
+  } {
+    code {window->show();} {}
+  }
+} 
+
+class CommandOutput_msk {} {
+  decl {MainWin* mainwin;} {public local
+  }
+  Function {CommandOutput_msk(MainWin* mw)} {open
+  } {
+    Fl_Window window {
+      label {Last Command Output} open
+      xywh {211 147 699 346} type Double hide resizable
+      code0 {\#include "mainwin.h"}
+    } {
+      Fl_Browser browser {
+        xywh {25 20 650 250} textfont 4 resizable
+        code0 {\#include <FL/Fl_Hold_Browser.H>}
+        class Fl_Hold_Browser
+      }
+      Fl_Group {} {open
+        xywh {0 277 700 68}
+      } {
+        Fl_Button {} {
+          label {Goto next Error}
+          callback {buttonnexterror_cb();}
+          xywh {55 288 145 39}
+        }
+        Fl_Button {} {
+          label Close
+          callback {buttonclose_cb();}
+          xywh {500 290 90 37}
+        }
+      }
+    }
+    code {mainwin = mw;} {}
+  }
+  Function {~CommandOutput_msk()} {open return_type virtual
+  } {
+    code {delete window;} {}
+  }
+  Function {buttonnexterror_cb() = 0} {open return_type {virtual void}
+  } {}
+  Function {buttonclose_cb()} {open return_type {virtual void}
+  } {
+    code {window->hide();} {}
+  }
+  Function {show()} {open return_type void
+  } {
+    code {window->show();} {}
+  }
+} 
+
+class HelpAbout_msk {open
+} {
+  decl {MainWin* mainwin;} {public local
+  }
+  Function {HelpAbout_msk(MainWin* mw)} {open
+  } {
+    Fl_Window window {
+      label {About flabc} open
+      xywh {361 139 375 375} type Double
+      code0 {\#include "mainwin.h"} modal visible
+    } {
+      Fl_Box logo {
+        image {logo/logoround.xpm} xywh {25 19 125 108}
+      }
+      Fl_Box {} {
+        label flabc
+        xywh {185 13 90 21} labelfont 1 labelsize 16 align 20
+      }
+      Fl_Box {} {
+        label Version
+        xywh {185 34 70 22} labelfont 1 labelsize 16 align 20
+      }
+      Fl_Box version {
+        label {x.y.z}
+        xywh {260 34 70 21} labelfont 1 labelsize 16 align 20
+      }
+      Fl_Box versiondate {
+        label {(1. Jan 1567)}
+        xywh {185 56 125 21} labelfont 1 labelsize 16 align 20
+      }
+      Fl_Box {} {
+        label {Copyright 2006-2020} selected
+        xywh {185 84 165 22} align 20
+      }
+      Fl_Box {} {
+        label {by Christoph Dalitz}
+        xywh {185 104 170 22} align 20
+      }
+      Fl_Box {} {
+        label {flabc is based in part on the work of the FLTK}
+        xywh {22 137 338 23} align 20
+      }
+      Fl_Box {} {
+        label {project (www.fltk.org). The current installation}
+        xywh {22 156 343 22} align 20
+      }
+      Fl_Box {} {
+        label {calls the following additional external software:}
+        xywh {22 177 343 22} align 20
+      }
+      Fl_Output abctab2ps {
+        label {abctab2ps:}
+        xywh {98 208 242 22}
+      }
+      Fl_Output abcm2ps {
+        label {abcm2ps:}
+        xywh {98 238 242 22}
+      }
+      Fl_Output abc2midi {
+        label {abc2midi:}
+        xywh {98 270 242 22}
+      }
+      Fl_Return_Button {} {
+        label Close
+        callback {buttonclose_cb();}
+        xywh {216 311 110 35}
+      }
+      Fl_Button {} {
+        label {View License}
+        callback {buttonlicense_cb();}
+        xywh {51 311 110 35}
+      }
+    }
+    code {mainwin = mw;} {}
+  }
+  Function {~HelpAbout_msk()} {open return_type virtual
+  } {
+    code {delete window;} {}
+  }
+  Function {buttonclose_cb()} {open return_type {virtual void}
+  } {
+    code {window->hide();} {}
+  }
+  Function {buttonlicense_cb() = 0} {open return_type {virtual void}
+  } {}
+  Function {show()} {open return_type {virtual void}
+  } {
+    code {window->show();} {}
+  }
+} 
+
+class GotoLine_msk {} {
+  decl {MainWin* mainwin;} {public local
+  }
+  decl {int buttonpressed; // 1 = Ok, 0 = Cancel} {public local
+  }
+  Function {GotoLine_msk(MainWin* mw)} {open
+  } {
+    Fl_Window window {
+      label {Goto Line/Column}
+      callback {buttoncancel_cb();} open
+      xywh {371 149 257 128} type Double hide
+      code0 {\#include "mainwin.h"} modal
+    } {
+      Fl_Input line {
+        label {Line:}
+        xywh {53 16 47 27}
+        code0 {\#include <FL/Fl_Int_Input.H>}
+        class Fl_Int_Input
+      }
+      Fl_Input column {
+        label {Column:}
+        xywh {172 16 48 27}
+        code0 {\#include <FL/Fl_Int_Input.H>}
+        class Fl_Int_Input
+      }
+      Fl_Return_Button ok {
+        label Ok
+        callback {buttonok_cb();}
+        xywh {44 64 65 36}
+      }
+      Fl_Button cancel {
+        label Cancel
+        callback {buttoncancel_cb();}
+        xywh {156 65 64 35} shortcut 0xff1b
+      }
+    }
+    code {mainwin = mw;
+buttonpressed = 0;} {}
+  }
+  Function {~GotoLine_msk()} {open return_type virtual
+  } {
+    code {delete window;} {}
+  }
+  Function {buttonok_cb()} {open return_type {virtual void}
+  } {
+    code {buttonpressed = 1;
+window->hide();} {}
+  }
+  Function {buttoncancel_cb()} {open return_type {virtual void}
+  } {
+    code {buttonpressed = 0;
+window->hide();} {}
+  }
+} 
+
+class GotoBar_msk {} {
+  decl {MainWin* mainwin;} {public local
+  }
+  decl {int buttonpressed; // 1 = Ok, 0 = Cancel} {public local
+  }
+  Function {GotoBar_msk(MainWin* mw)} {open
+  } {
+    Fl_Window window {
+      label {Goto Bar/Voice/Tune}
+      callback {buttoncancel_cb();} open
+      xywh {381 159 355 149} type Double hide
+      code0 {\#include "mainwin.h"} modal
+    } {
+      Fl_Input bar {
+        label {Bar:}
+        xywh {53 16 47 27}
+        code0 {\#include <FL/Fl_Int_Input.H>}
+        class Fl_Int_Input
+      }
+      Fl_Input voice {
+        label {Voice:}
+        xywh {159 16 48 27}
+      }
+      Fl_Input tune {
+        label {Tune:}
+        xywh {270 17 48 27}
+      }
+      Fl_Return_Button ok {
+        label Ok
+        callback {buttonok_cb();}
+        xywh {86 91 65 36}
+      }
+      Fl_Button cancel {
+        label Cancel
+        callback {buttoncancel_cb();}
+        xywh {213 92 64 35} shortcut 0xff1b
+      }
+      Fl_Box {} {
+        label {Note: Bar finding does not take care of pickups}
+        xywh {21 55 312 22} labelfont 2 align 20
+      }
+    }
+    code {mainwin = mw;
+buttonpressed = 0;} {}
+  }
+  Function {~GotoBar_msk()} {open return_type virtual
+  } {
+    code {delete window;} {}
+  }
+  Function {buttonok_cb()} {open return_type {virtual void}
+  } {
+    code {buttonpressed = 1;
+window->hide();} {}
+  }
+  Function {buttoncancel_cb()} {open return_type {virtual void}
+  } {
+    code {buttonpressed = 0;
+window->hide();} {}
+  }
+} 
+
+class Search_msk {} {
+  decl {MainWin* mainwin;} {public local
+  }
+  decl {int buttonpressed; // 1 = Ok, 0 = Cancel} {public local
+  }
+  Function {Search_msk(MainWin* mw)} {open
+  } {
+    Fl_Window window {
+      label Find
+      callback {buttoncancel_cb();} open
+      xywh {381 159 265 165} type Double hide
+      code0 {\#include "mainwin.h"} modal
+    } {
+      Fl_Input text {
+        label {Search string:}
+        xywh {25 30 215 27} align 5 textfont 4
+      }
+      Fl_Check_Button casesensitive {
+        label {Case sensitive}
+        xywh {25 70 115 25} down_box DOWN_BOX
+      }
+      Fl_Check_Button regexp {
+        label Regexp
+        xywh {155 71 85 25} down_box DOWN_BOX
+      }
+      Fl_Return_Button ok {
+        label Ok
+        callback {buttonok_cb();}
+        xywh {44 110 65 36}
+      }
+      Fl_Button cancel {
+        label Cancel
+        callback {buttoncancel_cb();}
+        xywh {156 111 64 35} shortcut 0xff1b
+      }
+    }
+    code {mainwin = mw;
+buttonpressed = 0;} {}
+  }
+  Function {~Search_msk()} {open return_type virtual
+  } {
+    code {delete window;} {}
+  }
+  Function {buttonok_cb()} {open return_type {virtual void}
+  } {
+    code {buttonpressed = 1;
+window->hide();} {}
+  }
+  Function {buttoncancel_cb()} {open return_type {virtual void}
+  } {
+    code {buttonpressed = 0;
+window->hide();} {}
+  }
+} 
+
+class Replace_msk {} {
+  decl {MainWin* mainwin;} {public local
+  }
+  Function {Replace_msk(MainWin* mw)} {open
+  } {
+    Fl_Window window {
+      label Replace
+      callback {buttoncancel_cb();} open
+      xywh {391 169 285 145} type Double hide
+      code0 {\#include "mainwin.h"} non_modal
+    } {
+      Fl_Input searchtext {
+        label {Search:}
+        xywh {75 13 190 23} textfont 4
+      }
+      Fl_Input replacetext {
+        label {Replace:}
+        xywh {75 42 190 23} textfont 4
+      }
+      Fl_Check_Button casesensitive {
+        label {Case sensitive}
+        xywh {75 75 115 25} down_box DOWN_BOX value 1
+      }
+      Fl_Check_Button regexp {
+        label Regexp
+        xywh {200 75 85 25} down_box DOWN_BOX deactivate
+      }
+      Fl_Return_Button search {
+        label {&Search}
+        callback {buttonsearch_cb();}
+        xywh {17 106 80 30}
+      }
+      Fl_Button replace {
+        label {&Replace}
+        callback {buttonreplace_cb();}
+        xywh {107 106 70 30}
+      }
+      Fl_Button replaceall {
+        label {Replace &all}
+        callback {buttonreplaceall_cb();}
+        xywh {187 106 85 30}
+      }
+    }
+    code {mainwin = mw;} {}
+  }
+  Function {~Replace_msk()} {open return_type virtual
+  } {
+    code {delete window;} {}
+  }
+  Function {buttonsearch_cb() = 0} {open return_type {virtual void}
+  } {}
+  Function {buttonreplace_cb() = 0} {open return_type {virtual void}
+  } {}
+  Function {buttonreplaceall_cb() = 0} {open return_type {virtual void}
+  } {}
+  Function {buttoncancel_cb()} {open return_type {virtual void}
+  } {
+    code {window->hide();} {}
+  }
+  Function {show()} {open return_type {virtual void}
+  } {
+    code {window->show();} {}
+  }
+} 
+
+class TextViewer_msk {} {
+  decl {MainWin* mainwin;} {public local
+  }
+  decl {Fl_Text_Buffer textbuffer;} {public local
+  }
+  Function {TextViewer_msk(MainWin* mw)} {open
+  } {
+    Fl_Window window {
+      label TextViewer open
+      xywh {336 87 599 603} type Double hide resizable
+      code0 {\#include "mainwin.h"}
+    } {
+      Fl_Return_Button {} {
+        label Close
+        callback {buttonclose_cb();}
+        xywh {268 552 81 35}
+      }
+      Fl_Text_Display textdisplay {
+        xywh {15 15 570 520} textfont 4 resizable
+      }
+    }
+    code {mainwin = mw;
+textdisplay->buffer(&textbuffer);} {}
+  }
+  Function {~TextViewer_msk()} {open return_type virtual
+  } {
+    code {delete window;} {}
+  }
+  Function {buttonclose_cb()} {open return_type {virtual void}
+  } {
+    code {window->hide();} {}
+  }
+  Function {show()} {open return_type {virtual void}
+  } {
+    code {window->show();} {}
+  }
+} 
+
+class TemplatePicker_msk {} {
+  decl {MainWin* mainwin;} {public local
+  }
+  decl {int buttonpressed; // 1 = Load, 0 = Cancel, -1 = None} {public local
+  }
+  Function {TemplatePicker_msk(MainWin* mw)} {open
+  } {
+    Fl_Window window {
+      label {New from Template}
+      callback {buttoncancel_cb();} open
+      xywh {495 130 459 444} type Double hide resizable
+      code0 {\#include "mainwin.h"} modal
+    } {
+      Fl_Browser browser {
+        callback {if (Fl::event_clicks())
+  buttonload_cb();}
+        xywh {25 20 410 305} textfont 4 resizable
+        code0 {\#include <FL/Fl_Hold_Browser.H>}
+        class Fl_Hold_Browser
+      }
+      Fl_Button {} {
+        label Cancel
+        callback {buttoncancel_cb();}
+        xywh {290 391 90 35} shortcut 0xff1b
+      }
+      Fl_Return_Button buttonload {
+        label {Load Template}
+        callback {buttonload_cb();}
+        xywh {70 391 150 35}
+      }
+      Fl_Box boxhint {
+        label {Hint: You can customize template directories with the tab "Templates" in "Options/System Environment"}
+        xywh {25 338 410 37} labelfont 2 align 148
+      }
+    }
+    code {mainwin = mw;
+buttonpressed = 0;} {}
+  }
+  Function {~TemplatePicker_msk()} {open return_type virtual
+  } {
+    code {delete window;} {}
+  }
+  Function {buttonload_cb()} {open return_type {virtual void}
+  } {
+    code {buttonpressed = 1;
+window->hide();} {}
+  }
+  Function {buttoncancel_cb()} {open return_type {virtual void}
+  } {
+    code {buttonpressed = 0;
+window->hide();} {}
+  }
+} 
+
+class FontPicker_msk {} {
+  decl {int buttonpressed; // 1 = Ok, 0 = Cancel} {public local
+  }
+  Function {FontPicker_msk()} {open
+  } {
+    Fl_Window window {
+      label {Choose Font}
+      callback {buttoncancel_cb();} open
+      xywh {391 169 399 402} type Double hide
+      code0 {\#include "mainwin.h"} modal
+    } {
+      Fl_Browser fontbrowser {
+        callback {fontbrowser_cb();}
+        xywh {17 15 283 165}
+        code0 {\#include <FL/Fl_Hold_Browser.H>}
+        class Fl_Hold_Browser
+      }
+      Fl_Browser sizebrowser {
+        callback {sizebrowser_cb();}
+        xywh {315 15 70 165}
+        code0 {\#include <FL/Fl_Hold_Browser.H>}
+        class Fl_Hold_Browser
+      }
+      Fl_Box displaybox {
+        label {font display}
+        xywh {16 190 370 149} box DOWN_BOX align 85
+      }
+      Fl_Return_Button ok {
+        label Ok
+        callback {buttonok_cb();}
+        xywh {89 352 65 36}
+      }
+      Fl_Button cancel {
+        label Cancel
+        callback {buttoncancel_cb();}
+        xywh {253 352 64 36} shortcut 0xff1b
+      }
+    }
+    code {buttonpressed = 0;} {}
+  }
+  Function {~FontPicker_msk()} {open return_type virtual
+  } {
+    code {delete window;} {}
+  }
+  Function {buttonok_cb()} {open return_type {virtual void}
+  } {
+    code {buttonpressed = 1;
+window->hide();} {}
+  }
+  Function {buttoncancel_cb()} {open return_type {virtual void}
+  } {
+    code {buttonpressed = 0;
+window->hide();} {}
+  }
+  Function {fontbrowser_cb() = 0} {open return_type {virtual void}
+  } {}
+  Function {sizebrowser_cb() = 0} {open return_type {virtual void}
+  } {}
+} 
+
+class FixupXrefs_msk {} {
+  decl {MainWin* mainwin;} {public local
+  }
+  decl {int buttonpressed; // 1 = Ok, 0 = Cancel} {public local
+  }
+  Function {FixupXrefs_msk(MainWin* mw)} {open
+  } {
+    Fl_Window window {
+      label {Fixup Xrefs}
+      callback {buttoncancel_cb();} open
+      xywh {381 159 273 177} type Double hide
+      code0 {\#include "mainwin.h"} modal
+    } {
+      Fl_Round_Button consecutive {
+        label {consecutive renumbering}
+        xywh {25 16 195 25} type Radio down_box ROUND_DOWN_BOX
+      }
+      Fl_Round_Button allowgaps {
+        label {allow gaps and non digit postfix}
+        xywh {25 63 225 24} type Radio down_box ROUND_DOWN_BOX
+      }
+      Fl_Return_Button ok {
+        label Ok
+        callback {buttonok_cb();}
+        xywh {43 121 65 36}
+      }
+      Fl_Button cancel {
+        label Cancel
+        callback {buttoncancel_cb();}
+        xywh {166 122 64 35} shortcut 0xff1b
+      }
+      Fl_Box {} {
+        label {(starts with first X-number)}
+        xywh {40 39 180 16} align 20
+      }
+      Fl_Box {} {
+        label {(only changes decreasing values)}
+        xywh {40 87 225 16} align 20
+      }
+    }
+    code {mainwin = mw;
+consecutive->value(1);
+buttonpressed = 0;} {}
+  }
+  Function {~FixupXrefs_msk()} {open return_type virtual
+  } {
+    code {delete window;} {}
+  }
+  Function {buttonok_cb()} {open return_type {virtual void}
+  } {
+    code {buttonpressed = 1;
+window->hide();} {}
+  }
+  Function {buttoncancel_cb()} {open return_type {virtual void}
+  } {
+    code {buttonpressed = 0;
+window->hide();} {}
+  }
+} 

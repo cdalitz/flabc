@@ -1,0 +1,91 @@
+Overview over the source code
+=============================
+
+GUI stuff
+---------
+
+Each dialog window is implemented in a base class 
+(postfix "_msk") and a derived class, eg. MainWin_msk 
+and MainWin. The base class is managed by fluid (the 
+FLTK dialog desinger) and only contains virtual functions 
+which are fleshed out in the derived class. The purpose 
+of this design is to restrict the use of fluid to the GUI 
+layout and use a decent text editor for all other coding.
+
+Here are some hints about the contents of some source
+files:
+
+mainwin*        - the main window
+editor.*        - syntax highlighting
+dialogs*        - all popup dialogs (eg. options)
+messagebox*     - more flexible reimplementation of fl_message
+fltkextensions* - modified (through derivation) FLTK classes
+
+
+Operating system specific isues
+-------------------------------
+
+os.[h|cpp]
+..........
+
+These source files contain functions that need to be 
+implemented differently on different platforms (like 
+communicating with a command line program via an anonympus
+pipe).
+
+#ifdefs are used throughout the code to distinguish between
+the platforms as follows:
+
+  #ifdef __APPLE__   - only defined with gcc (Xcode) on MacOS X
+  #ifdef WIN32       - only defined with MingW32 on Windows
+
+
+Windows
+.......
+
+The provided Makefile works out of the box with MingW32.
+Other compilers have not been tested.
+
+The "logo" subdirectory contains a Windows resource file 
+"winicon.rc" for the application icon that needs to be 
+compiled with windres and linked into the flabc binary; 
+the Makefile target "winapp" includes the necessary commands.
+
+The winapp directory contains a control file "setup.iss"
+for creating a Windows installer with InnoSetup
+(freely available from http://www.jrsoftware.org/isinfo.php).
+The Bourne shell script "makewindist" includes necessary 
+commands for creating the Windows setup. For running this script
+you can use the Bourne shell from Cygwin. The files are copied
+to a directory "flabc.w32dist" located in the parent directory
+of the flabc sources. Additional external resources (like
+the abctab2ps binary under "bin" or the user's guide under
+"doc") should be copied to this directory before creating the
+setup.
+
+MacOS X
+.......
+
+The necessary file structure for an application bundle is
+provided as a skeleton in flabc.app. The resulting flabc
+executable needs to be put into the subfolder "Contents/MacOS".
+The folder "Contents/Resources" can be used for additional 
+external resources (like the abctab2ps binary under "bin" or 
+the user's guide under "doc").
+
+The shell script "makeosxapp" copies the application bundle
+to the parent directory of the flabc sources. This is done
+so that the external resources (abctab2ps, abcm2midi, user's 
+guide) can be kept outside the source code of flabc.
+
+For debugging purposes there is a Makefile target "addres"
+which builds a standalone executable including the necessary
+MacOS resource forks for running the executable as an Aqua 
+application. Note that this is only for debugging purposes:
+the executable in the application bundle must not have these
+resource forks!
+
+
+Christoph Dalitz
+August 2006
+

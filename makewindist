@@ -1,0 +1,32 @@
+#!/bin/sh
+
+#
+# creates a binary installer of flabc for Win32 with the aid of InnoSetup
+#
+
+# temporary target directory for all files
+# this is a mirror of the eventual installation directory
+TARGETDIR=../flabc.w32dist
+
+test "`grep '^AppVerName=' winapp/setup.iss | cut -f 3 -d ' ' | sed 's/\r//'`" = "`grep '^#define.*VERSION ' src/flabc.h | cut -f 2 -d '"'  | sed 's/\r//'`" || \
+    { echo "Version in winapp/setup.iss and src/flabc.h differ"; exit 1; }
+
+# first make sure that binary is compiled with resource forks
+cd src; make winapp || exit 1; cd ..
+
+# copy data to target
+test -d $TARGETDIR || mkdir $TARGETDIR
+cp -r winapp/* $TARGETDIR/
+
+# documentation and templates
+cp CHANGES LICENSE $TARGETDIR/doc/
+cp doc/* $TARGETDIR/doc/
+cp README $TARGETDIR/
+rm -f $TARGETDIR/templates/*
+cp templates/* $TARGETDIR/templates/
+rm -f $TARGETDIR/examples/*
+cp examples/* $TARGETDIR/examples/
+
+# compile target with inno setup
+cd $TARGETDIR
+iscc setup.iss

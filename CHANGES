@@ -1,0 +1,311 @@
+Change log of flabc
+===================
+
+Version 1.2.1, 20. May 2020:
+----------------------------
+
+ - Option "System environment/Midi/MidiPlayer" was not saved.
+   This bug only affected Linux and is now fixed.
+   (Thanks to Eric Forgeot)
+
+
+Version 1.2.0, 27. Dec 2019:
+----------------------------
+
+ - no latin1 conversion for abcm2ps and abc2midi
+   note: this requires abcm2ps version >= 8.x (since 2014)
+
+
+Version 1.1.3, 10. Dec 2019:
+----------------------------
+
+ - menu "list format parameters" now supports abcm2ps version 8.x
+
+ - homebrew (OSX package manager) version of ghostscript no longer
+   supports x11 device => script added that calls ghostscript without
+   requiring x11 (corrollary: x11 no longer prerequisite on OSX)
+
+
+Version 1.1.2, 08. Mar 2016:
+----------------------------
+
+ - settings dialog made larger for correct text display on Linux
+ 
+ - "Preview tune" now works again on Windows
+
+
+Version 1.1.1, 21. Feb 2016:
+-----------------------------
+
+ - bugfix: "Abc/Preview Tune" did not convert encoding to latin1
+
+
+Version 1.1.0, 24. Jun 2015:
+-----------------------------
+
+ - new menu entry "Abc/Transpose region"
+
+ - abc2midi setting now saved in preferences
+
+ - workaround for bug in OSX 10.10 ("Yosemite") that subprocesses
+   started with popen do not inherit the environment (eg. PATH)
+
+ - colored program icon on Linux
+
+ - ported to FLTK 1.3
+
+ - source code now compatible with gcc 4.2
+
+
+Version 1.0.12, 18. Feb 2012:
+-----------------------------
+
+ - main window made smaller when too large for screen
+
+ - CMD-Right/Left for cycling through application windows
+   on MacOS X should now work reliably with FLTK 1.1.10
+
+
+Version 1.0.11, 03. Aug 2009:
+-----------------------------
+
+ - %%begintext ... %%endtext commented out for abc2midi
+
+
+Version 1.0.10, 04. Jul 2009:
+-----------------------------
+
+ - better support for MacOS X 10.5 out of the box (X11 starts
+   automagically on 10.5)
+
+
+Version 1.0.9, 29. Jul 2008:
+----------------------------
+
+ - syntax highlighting more robust with respect to backslashes
+
+ - renumbered midi instruments for compatibility with abc2midi
+
+
+Version 1.0.8, 16. Dec 2007:
+----------------------------
+
+ - "flabc file.abc" now also works when file.abc not yet exists
+
+ - new template simple_tune.abc (is ineffect the same as the menu
+   "Abc/Insert Header", but this seemed to be less obvious)
+
+ - "[|]" highlighted as bar
+
+
+Version 1.0.7, 23. Aug 2007:
+----------------------------
+
+ - opening of documentation on Windows now works with browsers 
+   that require backslashes as directory separator (like firefox)
+
+
+Version 1.0.6, 27. May 2007:
+----------------------------
+
+ - flabc now asks when example inadvertantly overwritten
+
+ - "[|" highlighted as bar
+
+ - file chooser only shows *.abc files by default
+
+
+Version 1.0.5, 17. Apr 2007:
+----------------------------
+
+ - prelimary support for Apple-Right/Left on OSX to switch
+   between application windows
+
+ - deadkey handling on OSX corrected when TAB or Arrow keys
+   pressed after deadkey
+
+ - more meaningful error messages on Windows when PS or Midi
+   files cannot be opened
+
+ - webbrowsers on Linux now a semicolon separated list
+   => should work better in default configuration
+
+ - corrected epm description file flabc.list
+   => examples and templates now correctly installed
+
+ - Shortcut Ctrl-N (OSX: Apple-N) for "File/New Window"
+
+
+Version 1.0.4, 02. Feb 2007:
+----------------------------
+
+ - new menu "File/New Window"
+
+ - Apple-Home and Apple-End now move to beginning and end of Buffer
+   on OSX
+
+ - no longer 'nonvirtual destructor' warnings with gcc4
+
+
+Version 1.0.3, 15. Dec 2006:
+----------------------------
+
+ - save/open dialog starts again in current working directory
+   on Linux (did no longer work due to a change in FLTK svn)
+
+ - icon quality on OSX improved
+
+ - new menu item "Help/Abctab2ps Manpage"
+
+ - mouse pointer no longer moved for "Search/Replace"
+
+
+Version 1.0.2, 05. Sep 2006:
+----------------------------
+
+ - menu "Search/Replace" implemented
+
+ - support for regexp search (Linux and OSX only)
+
+ - save dialog now starts in home directory when no file open
+   on OSX and Windows (on Linux the working directory is used)
+
+ - improved performance for loading files with Windows
+   line breaks (was *really* slow for large files)
+
+
+Version 1.0.1, 07. Aug 2006:
+----------------------------
+
+ - %! setting now also recognized in "Abc/Preview Tune"
+   and "Abc/List Format Params"
+
+
+Version 1.0.0, 28. Jul 2006:
+----------------------------
+
+ - new menu item "File/Load Example..."
+
+ - new menu item "Abc/Fixup Xrefs" for renumbering tunes
+
+ - full support for use of abcm2ps instead of abctab2ps
+
+ - new options in "Options/Behaviour":
+    o flabc can ask on exit when the buffer has changed
+    o use abcm2ps instead of abctab2ps by default
+    o very first line can control called program:
+      "%!abctab2ps" invokes abctab2ps and 
+      "%!abcm2ps" invokes abcm2ps when desired
+
+ - first and second endings highlighted like bar lines
+
+ - "Abc/Preview File" now only saves file when actually changed
+
+ - files from drag & drop on OSX no longer opened in 
+   same window, but always in new window
+
+ - bitmap window icon added on X11 (Linux)
+
+ - Linux and OSX: default temporary filenames now user specific
+
+
+Version 0.2.3, 29. Jun 2006:
+----------------------------
+
+ - default midi filename changed from "abc.midi" to "abc.mid"
+
+ - spaces in abc file pathnames no longer mock up call
+   of abctab2ps and abc2midi
+
+ - fixed infinite loop in "Search/Goto Bar"
+
+
+Version 0.2.2, 15. May 2006:
+----------------------------
+
+ - fixed savefile behaviour on Linux
+
+
+Version 0.2.1, 14. May 2006:
+----------------------------
+
+ - Cocoa like handling of deadkeys on OSX
+   option for treatment of ^ and ~ as non deadkeys added
+
+ - OSX: automatically converted to/from latin1 when writing/loading
+   abc files => umlauts now fully supported
+
+ - menu bar height now fixed when window resized
+
+
+Version 0.2.0, 18. Apr 2006:
+----------------------------
+
+ - Goto Bar: whitespace between adjacent bar lines ignored
+
+ - undo behaviour for replace operations corrected
+
+ - new items in abc menu:
+    o mark tune
+    o (un)comment region
+
+ - hacks for bugs in OSX version of FLTK:
+    o german umlauts now automatically converted to latin1 encoding
+    o dead keys '^' and '~' now accepted and immediately inserted
+    o arrow key shortcuts as in Cocoa
+   Warning: all has been tested only on a german keyboard
+
+ - added support for abcm2ps as "abctab2ps" command:
+    o stderr output now also piped to command window
+    o error messages of abcm2ps recognized
+
+ - cursor no longer leaves input fields in "Options/System environment"
+   when right/left arrow keys are pressed
+
+ - program bundle directories now always added to search paths
+   (even when different paths stored in preferences file)
+
+ - plain/italic/bold fonts now customizable in "Options/Look & Feel"
+
+
+Version 0.1.3, 14. Mar 2006:
+----------------------------
+
+ - menu "File/New from Template" implemented
+
+ - configuration files location now reported after saving config
+
+ - modification status is now shown by appended asterisk in window title
+
+ - "Got next error" in output dialog now ignores errors without line number
+
+ - plausicheck on missing abc tune before running "Abc/Preview File"
+
+ - abctab2ps and abc2midi exit code now checked before starting
+   ps viewer or midi player
+
+
+Version 0.1.2, 12. Mar 2006:
+----------------------------
+
+ - documentation added:
+    o menu "Help/Abcedit Documentation"
+    o new menu "Help/Abcedit Changes"
+    o button "View License" in AboutDialog
+
+
+Version 0.1.1, 07. Mar 2006:
+----------------------------
+
+ - first creation
+
+
+To do in future versions:
+-------------------------
+
+TODO - change directory to abc file before calling abctab2ps
+
+TODO - derive Fl_Text_Editor for tracking line/col of cursor
+
+TODO - try to fix menu selection color on OSX, eg. by deriving Fl_Menu_Bar
+

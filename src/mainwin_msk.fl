@@ -1,0 +1,491 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0303 
+header_name {.h} 
+code_name {.cpp}
+class MainWin_msk {open
+} {
+  decl {custom_Fl_Text_Buffer* textbuffer;} {public local
+  }
+  Function {MainWin_msk()} {open
+  } {
+    Fl_Window window {
+      label flabc
+      callback {// disable Escape shortcut
+if (Fl::event()==FL_SHORTCUT && Fl::event_key()==FL_Escape)
+  return;
+// otherwise call exit callback
+cbmenu_file_exit();} open
+      xywh {358 55 660 650} type Double resizable visible
+    } {
+      Fl_Menu_Bar menubar {open
+        xywh {0 0 660 30}
+      } {
+        Submenu {} {
+          label {&File}
+          xywh {0 0 63 20}
+        } {
+          MenuItem {} {
+            label {&New}
+            callback {cbmenu_file_new();}
+            xywh {0 0 30 20}
+          }
+          MenuItem menu_file_newwindow {
+            label {New &Window}
+            callback {cbmenu_file_newwindow();}
+            xywh {10 10 30 20} shortcut 0x4006e
+          }
+          MenuItem {} {
+            label {New from &Template...}
+            callback {cbmenu_file_newtemplate();}
+            xywh {10 10 30 20} divider
+          }
+          MenuItem {} {
+            label {&Open...}
+            callback {cbmenu_file_open();}
+            xywh {0 0 30 20} shortcut 0x4006f
+          }
+          MenuItem {} {
+            label {&Insert File...}
+            callback {cbmenu_file_insert();}
+            xywh {10 10 30 20}
+          }
+          MenuItem {} {
+            label {Load Example...}
+            callback {cbmenu_file_loadexample();}
+            xywh {20 20 30 20} divider
+          }
+          MenuItem {} {
+            label {&Save}
+            callback {cbmenu_file_save();}
+            xywh {0 0 31 20} shortcut 0x40073
+          }
+          MenuItem {} {
+            label {Save &As...}
+            callback {cbmenu_file_saveas();}
+            xywh {0 0 31 20} divider
+          }
+          MenuItem {} {
+            label {E&xit}
+            callback {cbmenu_file_exit();}
+            xywh {0 0 30 20} shortcut 0x40071
+          }
+        }
+        Submenu {} {
+          label {&Edit}
+          xywh {0 0 63 20}
+        } {
+          MenuItem {} {
+            label {&Undo}
+            callback {cbmenu_edit_undo();}
+            xywh {0 0 30 20} shortcut 0x4007a
+          }
+          MenuItem {} {
+            label {&Redo}
+            callback {cbmenu_edit_redo();}
+            xywh {10 10 30 20} divider
+          }
+          MenuItem {} {
+            label {Mark &All}
+            callback {textbuffer->select(0,textbuffer->length());}
+            xywh {0 0 31 20}
+          }
+          Submenu {} {
+            label {CUA Shortcuts} open
+            xywh {0 0 63 20}
+          } {
+            MenuItem {} {
+              label Cut
+              callback {Fl_Text_Editor::kf_cut(0,editor);}
+              xywh {15 15 30 20} shortcut 0x40078
+            }
+            MenuItem {} {
+              label Copy
+              callback {Fl_Text_Editor::kf_copy(0,editor);}
+              xywh {25 25 30 20} shortcut 0x40063
+            }
+            MenuItem {} {
+              label Paste
+              callback {Fl_Text_Editor::kf_paste(0,editor);}
+              xywh {35 35 30 20} shortcut 0x40076
+            }
+            MenuItem menu_edit_cua_linestart {
+              label {Goto Line Start}
+              callback {Fl_Text_Editor::kf_home(0,editor);
+//int pos = editor->insert_position();
+//pos = textbuffer->line_start(pos);
+//editor->insert_position(pos);
+//editor->show_insert_position();}
+              xywh {10 10 31 20} shortcut 0xff50
+            }
+            MenuItem menu_edit_cua_lineend {
+              label {Goto Line End}
+              callback {Fl_Text_Editor::kf_end(0,editor);
+//int pos = editor->insert_position();
+//pos = textbuffer->line_end(pos);
+//editor->insert_position(pos);
+//editor->show_insert_position();}
+              xywh {20 20 31 20} shortcut 0xff57
+            }
+            MenuItem menu_edit_cua_bufferstart {
+              label {Goto Buffer Start}
+              callback {editor->insert_position(0);
+editor->show_insert_position();}
+              xywh {20 20 31 20}
+            }
+            MenuItem menu_edit_cua_bufferend {
+              label {Goto Buffer End}
+              callback {editor->insert_position(textbuffer->length());
+editor->show_insert_position();}
+              xywh {30 30 31 20}
+            }
+          }
+          Submenu {} {
+            label {Emacs Shortcuts} open
+            xywh {0 0 63 20}
+          } {
+            MenuItem {} {
+              label {Goto Line Start}
+              callback {int pos = editor->insert_position();
+pos = textbuffer->line_start(pos);
+editor->insert_position(pos);
+editor->show_insert_position();}
+              xywh {0 0 31 20} shortcut 0x40061
+            }
+            MenuItem {} {
+              label {Goto Line End}
+              callback {int pos = editor->insert_position();
+pos = textbuffer->line_end(pos);
+editor->insert_position(pos);
+editor->show_insert_position();}
+              xywh {10 10 31 20} shortcut 0x40065
+            }
+            MenuItem {} {
+              label {Kill until Line End}
+              callback {int from, to;
+from = editor->insert_position();
+to = textbuffer->line_end(from);
+if (to == from && to < textbuffer->length()-1)
+  to += 1;
+textbuffer->remove(from,to);}
+              xywh {0 0 31 20} shortcut 0x4006b
+            }
+            MenuItem {} {
+              label {Yank (Paste)}
+              callback {Fl_Text_Editor::kf_paste(0,editor);}
+              xywh {45 45 30 20} shortcut 0x40079
+            }
+          }
+        }
+        Submenu {} {
+          label {&Search}
+          xywh {0 0 63 20}
+        } {
+          MenuItem {} {
+            label {&Find...}
+            callback {cbmenu_search_find();}
+            xywh {0 0 31 20} shortcut 0x40066
+          }
+          MenuItem {} {
+            label {Find &Again}
+            callback {cbmenu_search_findagain();}
+            xywh {10 10 31 20} shortcut 0xffc0
+          }
+          MenuItem {} {
+            label {&Replace}
+            callback {cbmenu_search_replace();}
+            xywh {0 0 31 20} divider
+          }
+          MenuItem {} {
+            label {Goto &Line/Column...}
+            callback {cbmenu_search_gotoline();}
+            xywh {0 0 31 20}
+          }
+          MenuItem {} {
+            label {Goto &Bar/Voice/Tune...}
+            callback {cbmenu_search_gotobar();}
+            xywh {0 0 31 20}
+          }
+        }
+        Submenu {} {
+          label {&Options}
+          xywh {0 0 63 20}
+        } {
+          MenuItem menu_options_larger {
+            label {Font Larger}
+            callback {cbmenu_options_larger();}
+            xywh {0 0 31 20} shortcut 0x4002b
+          }
+          MenuItem menu_options_smaller {
+            label {Font Smaller}
+            callback {cbmenu_options_smaller();}
+            xywh {10 10 31 20} shortcut 0x4002d
+          }
+          MenuItem {} {
+            label {Look and Feel}
+            callback {cbmenu_options_look();}
+            xywh {0 0 31 20}
+          }
+          MenuItem {} {
+            label Behaviour
+            callback {cbmenu_options_behaviour();}
+            xywh {10 10 31 20}
+          }
+          MenuItem {} {
+            label {System Environment}
+            callback {cbmenu_options_system();}
+            xywh {10 10 31 20} divider
+          }
+          MenuItem {} {
+            label {Save Options}
+            callback {cbmenu_options_save();}
+            xywh {0 0 31 20}
+          }
+        }
+        Submenu {} {
+          label {&Abc} open
+          xywh {0 0 63 20}
+        } {
+          MenuItem {} {
+            label {&Preview File}
+            callback {cbmenu_abc_preview();}
+            xywh {0 0 31 20}
+          }
+          MenuItem {} {
+            label {Preview &Tune}
+            callback {cbmenu_abc_previewtune();}
+            xywh {0 0 31 20}
+          }
+          MenuItem {} {
+            label {&Listen Tune}
+            callback {cbmenu_abc_listentune();}
+            xywh {0 0 31 20} divider
+          }
+          MenuItem {} {
+            label {Mark Tune}
+            callback {cbmenu_abc_marktune();}
+            xywh {0 0 31 20}
+          }
+          MenuItem {} {
+            label {Fixup Xrefs}
+            callback {cbmenu_abc_fixupxrefs();}
+            xywh {10 10 31 20}
+          }
+          Submenu {} {
+            label {Comment out} open
+            xywh {0 0 63 20}
+          } {
+            MenuItem {} {
+              label {Comment region}
+              callback {cbmenu_abc_commentregion();}
+              xywh {0 0 31 20}
+            }
+            MenuItem {} {
+              label {Uncomment region}
+              callback {cbmenu_abc_uncommentregion();}
+              xywh {10 10 31 20}
+            }
+          }
+          Submenu {} {
+            label {Transpose region} open
+            xywh {15 15 63 20} divider
+          } {
+            MenuItem {} {
+              label {Octave up}
+              callback {cbmenu_abc_regionoctaveup();}
+              xywh {15 15 31 20}
+            }
+            MenuItem {} {
+              label {Octave down}
+              callback {cbmenu_abc_regionoctavedown();}
+              xywh {25 25 31 20}
+            }
+          }
+          MenuItem {} {
+            label {Insert Header}
+            callback {cbmenu_abc_insertheader();}
+            xywh {0 0 31 20}
+          }
+          MenuItem {} {
+            label {Pick Midi Instrument}
+            callback {cbmenu_abc_midiinstrument();}
+            xywh {10 10 31 20}
+          }
+          Submenu {} {
+            label {List Format Params}
+            xywh {0 0 63 20}
+          } {
+            MenuItem {} {
+              label {Font Parameters}
+              callback {cbmenu_abc_format_font();}
+              xywh {0 0 31 20}
+            }
+            MenuItem {} {
+              label {Layout Parameters}
+              callback {cbmenu_abc_format_layout();}
+              xywh {10 10 31 20}
+            }
+            MenuItem {} {
+              label {Tablature Parameters}
+              callback {cbmenu_abc_format_tablature();}
+              xywh {20 20 31 20}
+            }
+            MenuItem {} {
+              label {All Parameters}
+              callback {cbmenu_abc_format_all();}
+              xywh {30 30 31 20}
+            }
+          }
+        }
+        Submenu {} {
+          label {&Help}
+          xywh {0 0 63 20}
+        } {
+          MenuItem {} {
+            label {Flabc Documentation}
+            callback {cbmenu_help_flabc();}
+            xywh {0 0 31 20}
+          }
+          MenuItem {} {
+            label {Flabc Changelog}
+            callback {cbmenu_help_flabcchanges();}
+            xywh {10 10 31 20}
+          }
+          MenuItem {} {
+            label {Abctab2ps User's Guide}
+            callback {cbmenu_help_usersguide();}
+            xywh {0 0 31 20}
+          }
+          MenuItem {} {
+            label {Abctab2ps Manpage}
+            callback {cbmenu_help_manpage();}
+            xywh {10 10 31 20} divider
+          }
+          MenuItem {} {
+            label {About flabc}
+            callback {cbmenu_help_about();}
+            xywh {10 10 31 20}
+          }
+        }
+      }
+      Fl_Tile tile {open
+        xywh {0 30 660 620}
+        code0 {\#include "fltkextensions.h"}
+        class resizable_Fl_Tile
+      } {
+        Fl_Group grouptop {open
+          xywh {0 30 660 620} resizable
+        } {
+          Fl_Text_Editor editor {
+            xywh {0 30 660 600}
+            code0 {\#include "fltkextensions.h"}
+            class custom_Fl_Text_Editor
+          }
+          Fl_Box infoline {
+            xywh {0 630 660 20} align 80
+          }
+        }
+      }
+    }
+    code {textbuffer = new custom_Fl_Text_Buffer();
+editor->buffer(textbuffer);
+window->resizable(grouptop);
+grouptop->resizable(editor);} {}
+  }
+  Function {~MainWin_msk()} {open return_type virtual
+  } {
+    code {delete window;
+delete textbuffer;} {}
+  }
+  Function {show()} {open
+  } {
+    code {window->show();} {}
+  }
+  Function {show(int argc, char**argv)} {open
+  } {
+    code {window->show(argc,argv);} {}
+  }
+  Function {cbmenu_file_new() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_file_newwindow() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_file_newtemplate() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_file_open() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_file_insert() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_file_loadexample() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_file_save() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_file_saveas() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_file_exit() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_edit_undo() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_edit_redo() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_search_find() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_search_findagain() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_search_replace() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_search_gotoline() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_search_gotobar() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_options_larger() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_options_smaller() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_options_look() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_options_behaviour() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_options_system() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_options_save() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_abc_preview() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_abc_previewtune() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_abc_listentune() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_abc_marktune() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_abc_fixupxrefs() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_abc_commentregion() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_abc_uncommentregion() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_abc_regionoctaveup() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_abc_regionoctavedown() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_abc_insertheader() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_abc_midiinstrument() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_abc_format_font() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_abc_format_layout() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_abc_format_tablature() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_abc_format_all() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_help_usersguide() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_help_manpage() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_help_flabc() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_help_flabcchanges() = 0} {open return_type {virtual void}
+  } {}
+  Function {cbmenu_help_about() = 0} {open selected return_type {virtual void}
+  } {}
+} 

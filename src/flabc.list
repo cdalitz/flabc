@@ -1,0 +1,31 @@
+# EPM specification file for binary distributions
+
+# general information
+%product flabc
+%copyright 2006-2020 by Christoph Dalitz
+%vendor Christoph Dalitz
+%license ../LICENSE
+%readme ../README
+%description flabc is an editor for abc text files. For converting abc
+%description files to postscript and midi it relies on the additional 
+%description external software abctab2ps and abc2midi.
+%version 1.2.1
+
+# definitions for installation directories
+$prefix=/usr
+$bindir=$prefix/bin
+$docdir=$prefix/share/doc/flabc
+$templatedir=$prefix/share/flabc
+
+# list of installation files
+f 755 root root $bindir/flabc flabc
+
+d 755 root root $docdir
+f 644 root root $docdir/README ../README
+f 644 root root $docdir/CHANGES ../CHANGES
+f 644 root root $docdir/LICENSE ../LICENSE
+f 644 root root $docdir ../doc/*
+
+d 755 root root $templatedir
+f 644 root root $templatedir/templates ../templates/*
+f 644 root root $templatedir/examples ../examples/*

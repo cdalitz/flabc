@@ -1,0 +1,4 @@
+CFBundleName = "flabc";
+CFBundleShortVersionString = "1.0";
+CFBundleGetInfoString = "flabc version 1.0 Copyright 2006 Christoph Dalitz";
+NSHumanReadableCopyright = "Copyright 2006 Christoph Dalitz.";
