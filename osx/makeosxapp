@@ -1,0 +1,37 @@
+#!/bin/bash
+
+#
+# creates an application bundle for OSX
+#
+
+# file path of the resulting application bundle
+TARGETDIR=./flabc.app
+read -p "Path to target app [$TARGETDIR]: " INPUT
+test -z "$INPUT" || TARGETDIR="$INPUT"
+if [ -e "$TARGETDIR" ]
+then
+   read -p "Target exists! Overwrite? [Y/n]: " INPUT
+   if [ "$INPUT" == "n" -o "$INPUT" == "N" ]
+   then
+	   echo "Cancelled" 1>&2
+	   exit 1
+   fi
+fi
+
+   
+# first make sure that binary is moved to the application template
+cd ../src; make osxapp; cd -
+
+# copy data to target
+echo "creace applictaion bundle '$TARGETDIR'"
+test -d $TARGETDIR || mkdir -p $TARGETDIR
+cp -r app-template/* $TARGETDIR/
+
+# documentation and templates
+cp ../README.md $TARGETDIR/Contents/Resources/doc/README
+cp ../CHANGES ../LICENSE $TARGETDIR/Contents/Resources/doc/
+cp ../doc/* $TARGETDIR/Contents/Resources/doc/
+rm -f $TARGETDIR/Contents/Resources/templates/*
+cp ../templates/* $TARGETDIR/Contents/Resources/templates/
+rm -f $TARGETDIR/Contents/Resources/examples/*
+cp ../examples/* $TARGETDIR/Contents/Resources/examples/

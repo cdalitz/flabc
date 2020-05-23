@@ -40,8 +40,8 @@ OBJECTS = messagebox_msk.o messagebox.o \
 	editor.o config.o utils.o os.o \
 	fltkextensions.o flabc.o
 
-OSXAPPDIR = ../flabc.app
-WINAPPDIR = ../winapp
+OSXAPPDIR = ../osx/app-template
+WINAPPDIR = ../win/winapp
 
 # do not remove intermediate cpp files
 .PRECIOUS: %.cpp
