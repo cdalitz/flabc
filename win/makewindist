@@ -7,7 +7,19 @@
 # temporary target directory for all files
 # this is a mirror of the eventual installation directory
 TARGETDIR=./flabc.windist
+read -p "Path to target app [$TARGETDIR]: " INPUT
+test -z "$INPUT" || TARGETDIR="$INPUT"
+if [ -e "$TARGETDIR" ]
+then
+   read -p "Target exists! Overwrite? [Y/n]: " INPUT
+   if [ "$INPUT" == "n" -o "$INPUT" == "N" ]
+   then
+	   echo "Cancelled" 1>&2
+	   exit 1
+   fi
+fi
 
+# plausi check for version number
 test "`grep '^AppVerName=' winapp/setup.iss | cut -f 3 -d ' ' | sed 's/\r//'`" = "`grep '^#define.*VERSION ' ../src/flabc.h | cut -f 2 -d '"'  | sed 's/\r//'`" || \
     { echo "Version in winapp/setup.iss and src/flabc.h differ"; exit 1; }
 
