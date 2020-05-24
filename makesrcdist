@@ -47,11 +47,18 @@ else
     echo "Version in EPM list different from $VERSION" 1>&2
     exit 1
 fi
-if grep -q "^AppVerName=.* version $VERSION" winapp/setup.iss
+if grep -q "^AppVerName=.* version $VERSION" win/winapp/setup.iss
 then
     :
 else
-    echo "Version in winapp/setup.iss different from $VERSION" 1>&2
+    echo "Version in win/winapp/setup.iss different from $VERSION" 1>&2
+    exit 1
+fi
+if grep -q "<string>$VERSION</string>" osx/app-template/Contents/Info.plist
+then
+    :
+else
+    echo "Version in osx/app-template/Contents/Info.plist different from $VERSION" 1>&2
     exit 1
 fi
 
@@ -64,12 +71,12 @@ DIR=flabc-$VERSION
 ln -s . $DIR
 
 # Readme, License, History
-echo $DIR/README > $LF
+echo $DIR/README* > $LF
 echo $DIR/CHANGES >> $LF
 echo $DIR/LICENSE >> $LF
 
 # patches to FLTK
-echo $DIR/fltk-patches >> $LF
+#echo $DIR/fltk-patches >> $LF
 
 # source code
 find $DIR/src -name "*.c" -o -name "*.cpp" -o -name "*.h" -o -iname "Makefile*" -o -name "*.fl" -o -name "*.list" -o -iname "Readme*" >> $LF
@@ -82,8 +89,10 @@ echo $DIR/examples >> $LF
 
 # distribution scripts
 ls $DIR/make* >> $LF
-echo $DIR/winapp >> $LF
-echo $DIR/flabc.app >> $LF
+ls $DIR/win/make* >> $LF
+ls $DIR/osx/make* >> $LF
+echo $DIR/win/winapp >> $LF
+echo $DIR/osx/app-template >> $LF
 
 
 # write archive
@@ -91,8 +100,10 @@ echo $DIR/flabc.app >> $LF
 
 tar czvf flabc-$VERSION.tar.gz \
     --exclude '.DS_Store' \
-    --exclude 'flabc.app/Contents/MacOS/flabc' \
-    --exclude 'winapp/bin/flabc.exe' \
+    --exclude '.git' \
+    --exclude '.gitignore' \
+    --exclude 'osx/app-template/Contents/MacOS/flabc' \
+    --exclude 'win/winapp/bin/flabc.exe' \
     -T $LF
 
 
