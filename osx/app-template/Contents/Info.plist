@@ -23,7 +23,7 @@
 	<key>CFBundleExecutable</key>
 	<string>flabc</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright 2006-2020 Christoph Dalitz</string>
+	<string>2006-2020 Christoph Dalitz, GPL v2</string>
 	<key>CFBundleIconFile</key>
 	<string>appIcon.icns</string>
 	<key>CFBundleIdentifier</key>
