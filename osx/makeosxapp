@@ -4,8 +4,13 @@
 # creates an application bundle for OSX
 #
 
+
 # file path of the resulting application bundle
 TARGETDIR=./flabc.app
+if [ $# -gt 0 ]
+then
+	TARGETDIR="$1"
+fi
 read -p "Path to target app [$TARGETDIR]: " INPUT
 test -z "$INPUT" || TARGETDIR="$INPUT"
 if [ -e "$TARGETDIR" ]

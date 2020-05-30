@@ -11,7 +11,8 @@
 
 # settings for GNU C compiler
 CC = g++
-CFLAGS = -Wall -g -fpermissive `fltk-config --cxxflags` $(ARCH)
+#CFLAGS = -Wall -g -fpermissive `fltk-config --cxxflags` $(ARCH)
+CFLAGS = -Wall -O2 -fpermissive `fltk-config --cxxflags` $(ARCH)
 LDFLAGS = `fltk-config --ldflags` -lstdc++ $(ARCH)
 
 # installation directories
