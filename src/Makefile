@@ -9,11 +9,16 @@
 # uncomment for universal binary on OSX
 #ARCH = -arch i386 -arch ppc
 
+# for support of older macos versions (comment out if unwanted)
+ifeq ($(shell uname -s),Darwin)
+	OSXMINVERSION = -mmacosx-version-min=10.10
+endif 
+
 # settings for GNU C compiler
 CC = g++
 #CFLAGS = -Wall -g -fpermissive `fltk-config --cxxflags` $(ARCH)
-CFLAGS = -Wall -O2 -fpermissive `fltk-config --cxxflags` $(ARCH)
-LDFLAGS = `fltk-config --ldflags` -lstdc++ $(ARCH)
+CFLAGS = -Wall -O2 -fpermissive `fltk-config --cxxflags` $(ARCH) $(OSXMINVERSION)
+LDFLAGS = `fltk-config --ldflags` -lstdc++ $(ARCH) $(OSXMINVERSION)
 
 # installation directories
 # (adjust to your preferences)
