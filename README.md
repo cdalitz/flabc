@@ -91,7 +91,7 @@ and opens the PDF with Preview. This requires ghostscript to be installed.
 Copyright and author
 --------------------
 
-Copyright (c) 2006-2020 by Christoph Dalitz
+Copyright (c) 2006-2022 by Christoph Dalitz
 
 Official home page of flabc and abctab2ps:
 <http://www.lautengesellschaft.de/cdmm/>
