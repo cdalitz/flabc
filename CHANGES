@@ -1,6 +1,12 @@
 Change log of flabc
 ===================
 
+Version 1.2.2, 12. Oct 2020:
+----------------------------
+
+ - transposition octave up/down now works for more than one line
+
+
 Version 1.2.1, 20. May 2020:
 ----------------------------
 

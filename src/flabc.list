@@ -2,14 +2,14 @@
 
 # general information
 %product flabc
-%copyright 2006-2020 by Christoph Dalitz
+%copyright 2006-2022 by Christoph Dalitz
 %vendor Christoph Dalitz
 %license ../LICENSE
 %readme ../README
 %description flabc is an editor for abc text files. For converting abc
 %description files to postscript and midi it relies on the additional 
 %description external software abctab2ps and abc2midi.
-%version 1.2.1
+%version 1.2.2
 
 # definitions for installation directories
 $prefix=/usr

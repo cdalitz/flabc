@@ -1212,12 +1212,30 @@ void MainWin::cbmenu_abc_regionoctaveup()
   maxpos = textbuffer->length();
   if (end > maxpos) end = maxpos;
   for (pos = start; pos < end; pos++) {
-    if (textbuffer->char_at(pos) == '\n' && pos < end-1) {
-      message_box("Transposition only supported\nfor single line of music");
-      return;
+    // reset pending stuff on line breaks
+    if (textbuffer->char_at(pos) == '\n') {
+      gchord = false;
+      deco = false;
+      header = false;
+    }
+    // handling of comments
+    if (textbuffer->char_at(pos) == '%') {
+      // unless escaped: ignore until end of line
+      if (!(pos > 0 && textbuffer->char_at(pos-1) == '\\')) {
+          while (pos < end && textbuffer->char_at(pos) != '\n') {
+            newtext += textbuffer->char_at(pos);
+            pos++;
+          }
+        }
+    }
+    // handling of header fields (info C, voice definition D)
+    else if (highlight->stylebuffer->char_at(pos) == 'C' ||
+             highlight->stylebuffer->char_at(pos) == 'D') {
+      newtext += textbuffer->char_at(pos);
+      continue;
     }
     // handling of gchords
-    if (gchord) {
+    else if (gchord) {
       newtext += textbuffer->char_at(pos);
       if (textbuffer->char_at(pos) == '"') gchord = false;
     }
@@ -1281,12 +1299,30 @@ void MainWin::cbmenu_abc_regionoctavedown()
   maxpos = textbuffer->length();
   if (end > maxpos) end = maxpos;
   for (pos = start; pos < end; pos++) {
-    if (textbuffer->char_at(pos) == '\n' && pos < end-1) {
-      message_box("Transposition only supported\nfor single line of music");
-      return;
+    // reset pending stuff on line breaks
+    if (textbuffer->char_at(pos) == '\n') {
+      gchord = false;
+      deco = false;
+      header = false;
+    }
+    // handling of comments
+    if (textbuffer->char_at(pos) == '%') {
+      // unless escaped: ignore until end of line
+      if (!(pos > 0 && textbuffer->char_at(pos-1) == '\\')) {
+          while (pos < end && textbuffer->char_at(pos) != '\n') {
+            newtext += textbuffer->char_at(pos);
+            pos++;
+          }
+        }
+    }
+    // handling of header fields (info C, voice definition D)
+    else if (highlight->stylebuffer->char_at(pos) == 'C' ||
+             highlight->stylebuffer->char_at(pos) == 'D') {
+      newtext += textbuffer->char_at(pos);
+      continue;
     }
     // handling of gchords
-    if (gchord) {
+    else if (gchord) {
       newtext += textbuffer->char_at(pos);
       if (textbuffer->char_at(pos) == '"') gchord = false;
     }
