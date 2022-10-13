@@ -10,7 +10,7 @@
 #include "mainwin.h"
 
 #define VERSION  "1.2.2"
-#define VERSIONDATE "(12. Oct 2022)"
+#define VERSIONDATE "(13. Oct 2022)"
 
 using namespace std;
 

@@ -904,10 +904,7 @@ static const char *idata_logoround[] = {
 "@@@@@@@@@@@@@@@@@@@@@@@@++++++++++++++++++++@@@@@@@@@@@@@@@@@@@@@@@@",
 "@@@@@@@@@@@@@@@@@@@@@@@@@@@@++++++++++++@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 };
-static Fl_Image *image_logoround() {
-  static Fl_Image *image = new Fl_Pixmap(idata_logoround);
-  return image;
-}
+static Fl_Pixmap image_logoround(idata_logoround);
 
 void HelpAbout_msk::cb_Close3_i(Fl_Return_Button*, void*) {
   buttonclose_cb();
@@ -927,7 +924,7 @@ HelpAbout_msk::HelpAbout_msk(MainWin* mw) {
   { window = new Fl_Double_Window(375, 375, "About flabc");
     window->user_data((void*)(this));
     { logo = new Fl_Box(25, 19, 125, 108);
-      logo->image( image_logoround() );
+      logo->image(image_logoround);
     } // Fl_Box* logo
     { Fl_Box* o = new Fl_Box(185, 13, 90, 21, "flabc");
       o->labelfont(1);
@@ -949,7 +946,7 @@ HelpAbout_msk::HelpAbout_msk(MainWin* mw) {
       versiondate->labelsize(16);
       versiondate->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
     } // Fl_Box* versiondate
-    { Fl_Box* o = new Fl_Box(185, 84, 165, 22, "Copyright 2006-2020");
+    { Fl_Box* o = new Fl_Box(185, 84, 165, 22, "Copyright 2006-2022");
       o->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
     } // Fl_Box* o
     { Fl_Box* o = new Fl_Box(185, 104, 170, 22, "by Christoph Dalitz");

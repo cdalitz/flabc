@@ -1213,6 +1213,7 @@ void MainWin::cbmenu_abc_regionoctaveup()
   if (end > maxpos) end = maxpos;
   for (pos = start; pos < end; pos++) {
     // reset pending stuff on line breaks
+    // (just in case something has gone wrong)
     if (textbuffer->char_at(pos) == '\n') {
       gchord = false;
       deco = false;
@@ -1300,6 +1301,7 @@ void MainWin::cbmenu_abc_regionoctavedown()
   if (end > maxpos) end = maxpos;
   for (pos = start; pos < end; pos++) {
     // reset pending stuff on line breaks
+    // (just in case something has gone wrong)
     if (textbuffer->char_at(pos) == '\n') {
       gchord = false;
       deco = false;

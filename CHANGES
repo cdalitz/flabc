@@ -1,10 +1,12 @@
 Change log of flabc
 ===================
 
-Version 1.2.2, 12. Oct 2022:
+Version 1.2.2, 13. Oct 2022:
 ----------------------------
 
  - transposition octave up/down now works for more than one line
+
+ - syntax highlighting for escaped comment signe (\%) corrected
 
 
 Version 1.2.1, 20. May 2020:

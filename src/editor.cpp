@@ -133,7 +133,7 @@ void SyntaxHighlighter::style_parse(const char *text,
 
   for (current = 'A', col = 0; length > 0; length --, text ++) {
     if (current == 'E') current = 'A';
-    if (*text == '%') {
+    if (*text == '%' && (col == 0 || *(text-1) != '\\')) {
       // comment until end of line
       for (; length > 0 && *text != '\n'; length--, text++) {
         *style++ = 'B'; col++;
