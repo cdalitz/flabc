@@ -3,7 +3,7 @@
 
 [Setup]
 AppName=flabc
-AppVerName=flabc version 1.2.1
+AppVerName=flabc version 1.2.2
 OutputDir=.
 OutputBaseFilename=flabc-setup
 DefaultDirName={pf}\flabc

@@ -23,7 +23,7 @@
 	<key>CFBundleExecutable</key>
 	<string>flabc</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>(c) 2020 Christoph Dalitz, GPL v2</string>
+	<string>(c) 2022 Christoph Dalitz, GPL v2</string>
 	<key>CFBundleIconFile</key>
 	<string>appIcon.icns</string>
 	<key>CFBundleIdentifier</key>
@@ -35,9 +35,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2.1</string>
+	<string>1.2.2</string>
 	<key>CFBundleVersion</key>
-	<string>1.2.1</string>
+	<string>1.2.2</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>LSUIElement</key>
