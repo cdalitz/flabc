@@ -100,7 +100,7 @@ winapp: $(OBJECTS)
 install:
 	install -m 755 -s $(PROGRAM) $(BINDIR)/$(PROGRAM)
 	install -d $(DOCDIR)
-	install -m 644 ../README ../CHANGES ../LICENSE ../doc/* $(DOCDIR)
+	install -m 644 ../README.md ../CHANGES ../LICENSE ../doc/* $(DOCDIR)
 	install -d $(TEMPLATEDIR)
 	install -m 644 ../templates/* $(TEMPLATEDIR)
 	install -d $(EXAMPLEDIR)
@@ -108,7 +108,7 @@ install:
 
 uninstall:
 	rm -f $(BINDIR)/$(PROGRAM)
-	rm -f $(DOCDIR)/README $(DOCDIR)/CHANGES $(DOCDIR)/LICENSE
+	rm -f $(DOCDIR)/README.md $(DOCDIR)/CHANGES $(DOCDIR)/LICENSE
 	@for f in ../doc/*; do \
 		echo "rm -f $(DOCDIR)/`basename $$f`"; \
 		rm -f $(DOCDIR)/`basename $$f`; \

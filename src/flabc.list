@@ -5,7 +5,7 @@
 %copyright 2006-2022 by Christoph Dalitz
 %vendor Christoph Dalitz
 %license ../LICENSE
-%readme ../README
+%readme ../README.md
 %description flabc is an editor for abc text files. For converting abc
 %description files to postscript and midi it relies on the additional 
 %description external software abctab2ps and abc2midi.
@@ -21,7 +21,7 @@ $templatedir=$prefix/share/flabc
 f 755 root root $bindir/flabc flabc
 
 d 755 root root $docdir
-f 644 root root $docdir/README ../README
+f 644 root root $docdir/README ../README.md
 f 644 root root $docdir/CHANGES ../CHANGES
 f 644 root root $docdir/LICENSE ../LICENSE
 f 644 root root $docdir ../doc/*
