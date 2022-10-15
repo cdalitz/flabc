@@ -15,6 +15,13 @@ LF=Include
 
 USAGEMSG="USAGE: `basename $0` -v version"
 
+if [ "`uname -s`" == 'Darwin' ]
+then
+	TAR=gtar
+else
+	TAR=tar
+fi
+   
 while [ $# -gt 0 ]
 do
     case "$1" in
@@ -98,7 +105,7 @@ echo $DIR/osx/app-template >> $LF
 # write archive
 #-----------------
 
-tar czvf flabc-$VERSION.tar.gz \
+$TAR czvf flabc-$VERSION.tar.gz \
     --exclude '.DS_Store' \
     --exclude '.git' \
     --exclude '.gitignore' \
