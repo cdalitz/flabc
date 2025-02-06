@@ -680,7 +680,7 @@ class HelpAbout_msk {open
         xywh {185 56 125 21} labelfont 1 labelsize 16 align 20
       }
       Fl_Box {} {
-        label {Copyright 2006-2022} selected
+        label {Copyright 2006-2025} selected
         xywh {185 84 165 22} align 20
       }
       Fl_Box {} {

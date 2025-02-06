@@ -9,8 +9,8 @@
 #include <vector>
 #include "mainwin.h"
 
-#define VERSION  "1.2.2"
-#define VERSIONDATE "(13. Oct 2022)"
+#define VERSION  "1.3.0"
+#define VERSIONDATE "(06. Feb 2025)"
 
 using namespace std;
 

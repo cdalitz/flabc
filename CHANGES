@@ -1,6 +1,12 @@
 Change log of flabc
 ===================
 
+Version 1.3.0, 06. Feb 2025:
+----------------------------
+
+ - fixed possible error during loading file on some platforms
+
+
 Version 1.2.2, 13. Oct 2022:
 ----------------------------
 

@@ -42,17 +42,22 @@ int readfile(const char* filename, string* s)
   *s = "";
   fp = fopen(filename,"rb");
   if (!fp) return 1;
-  while ((c1 = getc(fp)) != EOF) {
+  while ((rc = getc(fp)) != EOF) {
+    c1 = rc;
     if (c1 == '\n') {
       *s += '\n';
-      c2 = getc(fp);
-      if (!feof(fp) && c2 != '\r')
+      rc = getc(fp);
+      if (rc == EOF) break;
+      c2 = rc;
+      if (c2 != '\r')
         *s += c2;
     }
     else if (c1 == '\r') {
       *s += '\n';
-      c2 = getc(fp);
-      if (!feof(fp) && c2 != '\n')
+      rc = getc(fp);
+      if (rc == EOF) break;
+      c2 = rc;
+      if (c2 != '\n')
         *s += c2;
     }
     else {
