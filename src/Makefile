@@ -11,7 +11,7 @@
 
 # for support of older macos versions (comment out if unwanted)
 ifeq ($(shell uname -s),Darwin)
-	OSXMINVERSION = -mmacosx-version-min=10.10
+	OSXMINVERSION = -mmacosx-version-min=10.13
 endif 
 
 # settings for GNU C compiler
