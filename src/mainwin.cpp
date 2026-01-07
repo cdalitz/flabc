@@ -1206,7 +1206,6 @@ void MainWin::cbmenu_abc_regionoctaveup()
 
   // replace every note with octave up note
   string newtext = "";
-  bool gchord = false;
   bool deco = false;
   bool header = false;
   maxpos = textbuffer->length();
@@ -1215,7 +1214,6 @@ void MainWin::cbmenu_abc_regionoctaveup()
     // reset pending stuff on line breaks
     // (just in case something has gone wrong)
     if (textbuffer->char_at(pos) == '\n') {
-      gchord = false;
       deco = false;
       header = false;
     }
@@ -1298,7 +1296,6 @@ void MainWin::cbmenu_abc_regionoctavedown()
 
   // replace every note with octave down note
   string newtext = "";
-  bool gchord = false;
   bool deco = false;
   bool header = false;
   maxpos = textbuffer->length();
@@ -1307,7 +1304,6 @@ void MainWin::cbmenu_abc_regionoctavedown()
     // reset pending stuff on line breaks
     // (just in case something has gone wrong)
     if (textbuffer->char_at(pos) == '\n') {
-      gchord = false;
       deco = false;
       header = false;
     }
