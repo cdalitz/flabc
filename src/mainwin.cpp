@@ -1236,13 +1236,17 @@ void MainWin::cbmenu_abc_regionoctaveup()
       continue;
     }
     // handling of gchords
-    else if (gchord) {
-      newtext += textbuffer->char_at(pos);
-      if (textbuffer->char_at(pos) == '"') gchord = false;
-    }
     else if (textbuffer->char_at(pos) == '"') {
-      gchord = true;
       newtext += textbuffer->char_at(pos);
+      pos++;
+      while (pos < end) {
+        newtext += textbuffer->char_at(pos);
+        if (textbuffer->char_at(pos) == '\n' ||
+            (textbuffer->char_at(pos) == '"'
+             && textbuffer->char_at(pos-1) != '\\')) break;
+        pos++;
+      }
+      continue;
     }
     // handling of inline headers
     if (header) {
@@ -1324,13 +1328,17 @@ void MainWin::cbmenu_abc_regionoctavedown()
       continue;
     }
     // handling of gchords
-    else if (gchord) {
-      newtext += textbuffer->char_at(pos);
-      if (textbuffer->char_at(pos) == '"') gchord = false;
-    }
     else if (textbuffer->char_at(pos) == '"') {
-      gchord = true;
       newtext += textbuffer->char_at(pos);
+      pos++;
+      while (pos < end) {
+        newtext += textbuffer->char_at(pos);
+        if (textbuffer->char_at(pos) == '\n' ||
+            (textbuffer->char_at(pos) == '"'
+             && textbuffer->char_at(pos-1) != '\\')) break;
+        pos++;
+      }
+      continue;
     }
     // handling of inline headers
     if (header) {

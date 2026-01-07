@@ -1,6 +1,12 @@
 Change log of flabc
 ===================
 
+Version 1.3.1, 07. Jan 2026:
+----------------------------
+
+ - fixed error in handling of gchords in Transpose Ocatve up/down
+
+
 Version 1.3.0, 06. Feb 2025:
 ----------------------------
 
@@ -12,7 +18,7 @@ Version 1.2.2, 13. Oct 2022:
 
  - transposition octave up/down now works for more than one line
 
- - syntax highlighting for escaped comment signe (\%) corrected
+ - syntax highlighting for escaped comment sign (\%) corrected
 
 
 Version 1.2.1, 20. May 2020:
