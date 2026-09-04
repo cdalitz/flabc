@@ -78,7 +78,7 @@ deb: $(PROGRAM)
 	# check version
 	test `grep ' VERSION ' flabc.h | cut -f 2 -d '"'` = `grep '%version ' flabc.list | cut -f 2 -d ' '` || \
 		{ echo "different versions in flabc.h and flabc.list"; exit 1; }
-	@test  `id -u` = 0 || { echo "Must be root for 'make deb'"; exit 1; }
+	#@test  `id -u` = 0 || { echo "Must be root for 'make deb'"; exit 1; }
 	epm -v -n -f deb $(PROGRAM)
 
 osxapp: $(PROGRAM)
